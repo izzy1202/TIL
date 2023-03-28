@@ -4,4 +4,4 @@
 
 ----------------------------------------------------------------------------------------------------------------------
 ### JAVA
-* [윤성우의 열혈 Java](https://github.com/izzy1202/TIL/blob/main/Java/JavaYoon.md)
+* [윤성우의 열혈 Java - 강의내용 정리](https://github.com/izzy1202/TIL/blob/main/Java/JavaYoon.md)
