@@ -228,7 +228,9 @@ ex) double num2 = 3.3 + 4.5;
 
 ### 3.1. 비트 연산자의 이해
 - 비트 연산자의 피연산자는 정수로 제안이 되어있다.
+
 ![image](https://user-images.githubusercontent.com/106478906/230700743-f8b57770-ff45-4f61-a2f0-44471e82aabd.png)
+
 -> n1 n2를 byte로 선언했어도 연산하는 과정에서 int형으로 변환되기 때문에 n3에 저장하려면 byte로 강제형변환을 해야한다.
 
 ### 3.2. 비트 연산자
@@ -275,7 +277,9 @@ ex) double num2 = 3.3 + 4.5;
 
 ### 2.2. switch문 + break문
 - break문이 실행되면 switch문을 빠져나간다.
+
 ![image](https://user-images.githubusercontent.com/106478906/230704932-b177a197-7065-43cd-8cfa-ba229b585171.png)
+
 -> 한 페이지에 여러 개의 인덱스를 붙여놓는 것과 같다.
 
 ## 3. for, while 그리고 do~while 
@@ -286,9 +290,16 @@ ex) double num2 = 3.3 + 4.5;
 
 ### 3.1. while문과 do ~ while문의 차이
 - while문은 조건 검사를 먼저하고 실행, do ~ while문은 일단 실행하고 조건 검사
-![image](https://userimages.githubusercontent.com/106478906/230707171-be9773cf-37a5-4eb8-9067-dc41872bff1a.png)
+![image](https://user-images.githubusercontent.com/106478906/230707171-be9773cf-37a5-4eb8-9067-dc41872bff1a.png)
 
+![image](https://user-images.githubusercontent.com/106478906/230709199-d88c3e22-9553-431a-92ee-5fbb94c4c131.png)
+- 1번 시작하고 2-3-4 삼각형 반복된다고 생각하면 쉬움
 
+### 3.2. break & continue 
+![image](https://user-images.githubusercontent.com/106478906/230709635-7dce3a06-6ba1-4d05-aec5-5e976a7e74e4.png)
 
+- break : 빠져나가라
+- continue : 계속은 계속인데 위에서부터 계속
+  - 남은 거 생략하고 위에부터 다시 시작한다
 
 
