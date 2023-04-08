@@ -295,11 +295,39 @@ ex) double num2 = 3.3 + 4.5;
 ![image](https://user-images.githubusercontent.com/106478906/230709199-d88c3e22-9553-431a-92ee-5fbb94c4c131.png)
 - 1번 시작하고 2-3-4 삼각형 반복된다고 생각하면 쉬움
 
-### 3.2. break & continue 
+## 4. break & continue 
 ![image](https://user-images.githubusercontent.com/106478906/230709635-7dce3a06-6ba1-4d05-aec5-5e976a7e74e4.png)
 
 - break : 빠져나가라
 - continue : 계속은 계속인데 위에서부터 계속
   - 남은 거 생략하고 위에부터 다시 시작한다
+
+### 4.1. 무한루프
+~~~java
+  for( ; ; ) {
+      ....
+  }
+~~~
+~~~java
+  while(true){
+      ....
+  }
+~~~
+~~~java
+  do{
+      ....
+  } while(true)
+~~~
+- 특정 조건이 만족되었을 때 반복문을 벗어나려면 break문을 실행하면 된다.
+
+## 5. 반복문의 중첩
+![image](https://user-images.githubusercontent.com/106478906/230723370-b7414b69-2b9e-488a-af3a-aa828534cf8a.png)
+- for문 중첩이 가장 중요
+![image](https://user-images.githubusercontent.com/106478906/230726318-11daef6d-9e44-4207-abff-90d4048132d9.png)
+
+
+
+
+
 
 
