@@ -410,22 +410,72 @@ ex) double num2 = 3.3 + 4.5;
   if(ref == null) // ref가 참조하는 인스턴스가 없다면
 ~~~
 
+## 2. 생성자(Constructor)와 String 클래스의 소개 
 
+### 2.1. String 클래스에 대한 첫 소개
+~~~java
+  public static void main(String[] args) {
+    String str1 = "Happy";
+    String str2 = "Birthday";
+    System.out.println(str1 + " " + str2);
+    
+    printString(str1);
+    printString(str2);
+}
+~~~
+- 문자열을 메소드의 인자로 전달할 수 있다.
+- 코드상에서의 문자열 표현은 String 인스턴스의 생성으로 이어진다.
+- String형 참조변수로 문자열을 참조할 수 있다.
+~~~java
+public static void printString(String str) {
+System.out.print(str);
+}
+~~~
+- 매개변수로 String형 참조변수를 선언하여 문자열을 인자로 전달받을 수 있다.
+- String형 참조변수이니까 매개변수도 String형으로 선언한다.
 
+### 2.2. 클래스 정의 모델: 인스턴스 구분에 필요한 정보를 갖게 하자.
+![image](https://user-images.githubusercontent.com/106478906/230775596-c832a9be-6f6b-4147-bd17-3a5da1cb0e16.png)
 
+### 2.3. 좋은 클래스 정의 후보를 위한 초기화 메소드
+![image](https://user-images.githubusercontent.com/106478906/230776013-b3a54c4a-631a-4aab-8012-20552367d320.png)
 
+### 2.4. 초기화 메소드를 대신하는 생성자
+1) 생성자의 이름은 클래스의 이름과 동일해야 한다.
+2) 생성자는 값을 반환하지 않고 반환형도 표시하지 않는다.
 
+### 2.5. 디폴트 생성자
+- 컴파일러에 의해 자동 삽입되는 '디폴트 생성자’
+- 무늬만 생성자
+- 하지만, 모든 클래스는 기본적으로 생성자를 직접 정의하는 것이 의미가 있다.
 
+## 3. 자바의 이름 규칙(Naming Rule)  
 
+### 3.1. 클래스의 이름 규칙
+1) 클래스 이름의 첫 문자는 대문자로 시작한다.
+2) 둘 이상의 단어가 묶여서 하나의 이름을 이룰 때, 새로 시작하는 단어는 대문자로 한다.
+~~~java
+  ex) Circle + Point = CirclePoint  
+~~~
+- Camel Case(낙타등) 모델
 
+## 3.2. 메소드와 변수의 이름 규칙
+1) 메소드 및 변수 이름의 첫 문자는 소문자로 시작한다.
+2) 둘 이상의 단어가 묶여서 하나의 이름을 이룰 때, 새로 시작하는 단어는 대문자로 한다.
 
+~~~java
+  ex) Add + Your + Money = addYourMoney
+      Your + Age = yourAge
+~~~
+- 변형된 Camel Case 모델
 
+### 3.3. 상수의 이름 규칙
+1) 상수의 이름은 모든 문자를 대문자로 구성한다.
+2) 둘 이상의 단어가 묶여서 하나의 이름을 이룰 때 단어 사이를 언더바로 연결한다.
 
-
-
-
-
-
+~~~java
+  ex) final int COLOR_RAINBOW = 7;
+~~~
 
 
 
