@@ -556,22 +556,177 @@ System.out.print(str);
 - com.wxfx.smart 패키지로 묶인 전체 클래스에 대한 패키지 선언
 -> 이름 충돌 발생 가능성 때문에 대부분 쓰지 않는다.
 
+# Chapter 09
 
+## 1. 정보 은닉 (Information Hiding)
+- 클래스에는 데이터, 기능이 있는데 데이터를 숨기고 기능으로 접근하게끔 하는 것이다.
+- 은닉의 주체는 클래스
+- 클래스 외부에서 데이터에 직접적 접근 못하게 하는 것이다.
 
+### 1.1. 정보를 은닉해야 하는 이유
+![image](https://user-images.githubusercontent.com/106478906/230881572-37954a0f-bcc2-41c5-bb81-bbc142243a7e.png)
 
+- 논리적 오류가 생겨도 컴파일 오류가 발생하지 않는다.
+-> 정보 은닉을 통해 논리적 오류를 문법적 오류로 바꾸어 컴파일 오류가 발생하게끔 해야 한다.
 
+### 1.2. 정보의 은닉을 위한 private 선언
+- Private 선언을 하면 정보를 은닉 할 수 있다.
 
+## 2. 접근 수준 지시자 (Access-level Modifiers)
 
+### 2.1. 네 가지 종류의 접근 수준 지시자
 
+> public > protected > default > private
+- 보통 인스턴스 변수는 private, 인스턴스 변수에 접근하기 위한 메소드들은 public으로 선언한다.
+- private을 기준으로 두고 private보다 한 군데 허용하는 것이 default이고, 두 군데 허용하는 것이 protected라고 생각하면 쉽다.
 
+![image](https://user-images.githubusercontent.com/106478906/230884720-7b60a12d-d082-4bad-82a5-00393e6fcdfb.png)
+- public으로 선언한 클래스는 소스 파일의 이름을 클래스 이름과 같게 해야한다.
+왜냐하면 외부에 노출할 클래스이므로, 그 소스 파일안에 어떤 내용이 있는지를 명확히 알 수 있기 때문이다.
+-> 하나의 소스파일에 둘 이상의 public 클래스가 들어오면 이 규칙을 만족시키지 못하므로 불가능하다.
 
+### 2.2. 클래스의 public, default 선언 관련 예
+- 소스파일이 나눠져 있어도 패키지명이 같으면 동일 패키지로 묶였다고 간주할 수 있다.
+- 따라서 패키지명을 같게 바꾸면 default로 선언한 클래스도 오류가 나지 않는다.
 
+### 2.3. 상속에 대한 약간의 설명: protected 선언의 의미 이해를 위한
+![image](https://user-images.githubusercontent.com/106478906/230888077-1b57788f-6a34-4d0b-a002-24814a6786f3.png)
 
+- 디폴트 패키지는 패키지 선언이 되어 있지 않은 클래스들을 하나의 패키지로 묶기 위한 개념이다.
+  - code레벨에서 내/외부 접근을 생각해야하며, 인스턴스 레벨에서 보면 안된다.
+  - 상속관계는 외부이지만, 디폴트 패키지로 묶여있기 때문에 접근을 허용해주는 것이다.
 
+### 2.4. 인스턴스 멤버의 protected 선언이 갖는 의미
+![image](https://user-images.githubusercontent.com/106478906/230888280-3a4c131a-65b3-4539-abd8-aac9b4927747.png)
+- protected 선언으로 인해 동일 패키지로 묶여있지 않아도 상속 관계에서 접근 가능하다.
 
+### 2.5. 인스턴스 멤버 대상 접근 수준 지시자 정리
+![image](https://user-images.githubusercontent.com/106478906/230888660-6aec4b05-336a-4f5f-9bda-3d8ece39d617.png)
 
+## 3. 캡슐화 (Encapsulation)
 
+### 3.1. 포함 관계로 캡슐화 완성하기
+![image](https://user-images.githubusercontent.com/106478906/230894917-f6f2484e-725b-410e-bd1c-3889a37a7329.png)
 
+- 클래스간에 가장 많이 갖는 관계
+
+# Chapter 10
+
+## 1. static 선언을 붙여서 선언하는 클래스 변수 
+
+- 전체 프로그램에서 하나의 변수를 선언해서 전체 프로그램에서 모두 공유하고 싶을 때
+- 클래스 변수 : static선언을 함으로써 하나만 존재하고, 어디서나 접근 가능한 변수
+  - 인스턴스 변수는 인스턴스의 생성했을 때 존재한다는 의미, 클래스 변수는 위치는 인스턴스 내에 존재하지만 인스턴스 변수가 아니라 클래스에 위치하는 변수다.
+- cf. static 변수라고 많이 부름
+
+### 1.1. 선언된 클래스의 모든 인스턴스가 공유하는 클래스 변수
+- static이 붙을 경우, 속한 클래스와 관계없다
+  - 속한 클래스에서 지시하는 접근 수준 지시자의 규칙을 따라야 한다.
+  - 속한 클래스가 클래스 변수에게 자리를 빌려 주었으니, 클래스 변수에 직접 접근을 할 수 있는 권한을 획득하겠다.
+  - 클래스 변수는 인스턴스 생성과 상관없이 특정한 메모리 공간에 별도로 저장한다.
+
+### 1.2. 클래스 변수의 접근 방법
+- 클래스 내부 접근
+  - static 변수가 선언된 클래스 내에서는 이름만으로 직접 접근 가능
+- 클래스 외부 접근
+  - private으로 선언되지 않으면 클래스 외부에서도 접근 가능
+  - 접근 수준 지시자가 허용하는 범위에서 접근 가능
+  - 클래스 또는 인스턴스의 이름을 통해 접근
+
+![image](https://user-images.githubusercontent.com/106478906/230903280-fba16d82-b3fc-4a2e-b0ca-9b06ce7a97ee.png)
+
+->num이라는 변수가 인스턴스 변수인지 클래스 변수인지 분간이 안되기 때문에 인스턴스 이름보다는 클래스 이름으로 접근하는 것이 권장된다.
+  
+### 1.3. 클래스 변수의 초기화 시점과 초기화 방법
+- 클래스 변수는 생성자 기반으로 초기화 하면 안된다. 이 경우 인스턴스 생성시마다 값이 리셋된다.
+- 초기화 시점 : JVM에 읽혀들어갈 때  
+  
+### 1.4. 클래스 변수의 활용의 예
+~~~java
+  class Circle {
+    static final double PI = 3.1415;
+    private double radius;
+    Circle(double rad) {
+    radius = rad;
+    }
+    void showPerimeter() {
+    double peri = (radius * 2) * PI;
+    System.out.println("둘레: " + peri);
+    }
+    void showArea() {
+    double area = (radius * radius) * PI;
+    System.out.println("넓이: " + area);
+    }
+  }
+~~~
+- 인스턴스 별로 가지고 있을 필요가 없는 변수
+  - 값의 참조가 목적인 변수
+  - 값의 공유가 목적인 변수
+- 그리고 그 값이 외부에서도 참조하는 값이라면 public으로 선언한다.
+
+## 2. static 선언을 붙여서 정의하는 클래스 메소드
+- 클래스 메소드의 성격 및 접근 방법이 클래스 변수와 동일하다.
+
+### 2.1. 클래스 메소드로 정의하는 것이 옳은 경우
+- 단순 기능 제공이 목적인 메소드들, 인스턴스 변수와 관련 지을 이유가 없는 메소드들은static으로 선언하는 것이 옳다.
+
+![image](https://user-images.githubusercontent.com/106478906/230907754-4102a579-be33-41ed-afe1-54e817085f58.png)
+- 유효하지 않은 이유
+1) addNum이라는 클래스 메소드는 인스턴스 변수들과 별도로 저장되어 있다.
+2) 된다고 쳐도, 여러 개의 num 변수가 있을 수 있으므로 어떤 num을 증가시킬 지 모른다.
+
+## 3. System.out.println() 그리고 public static void main() 
+- System.out.println()
+  - System : 클래스 이름
+  - out : 클래스 변수(뒤에 .을 찍었다는 것은 참조변수임을 의미)
+  - println : 인스턴스
+- public static void main() 
+  - public : 약속(명령 프롬프트, 이클립스 등 외부 툴에서 메인 메소드를 호출하므로 요청 자체가 클래스 외부에서 이루어진다.)
+  - static : main메소드는 하나만 존재해야 한다.
+  - void : 반환 x
+  
+### 3.1. System.out.println()에서 out과 println의 정체는?
+~~~java
+  java.lang.System.out.println(...);
+~~~
+- System은 java.lang 패키지에 묶여 있는 클래스의 이름
+- 그러나 컴파일러가 다음 문장을 삽입해 주므로 java.lang을 생략할 수 있다.
+- import java.lang.*;
+~~~java
+  System.out.println(...)
+~~~
+- out은 클래스 System의 이름을 통해 접근하므로,
+- 이는 System 클래스의 클래스 변수 이름임을 유추할 수 있다.
+~~~java
+  System.out.println(...);
+~~~
+- println은 out이 참조하는 인스턴스의 메소드이다.
+
+### 3.2. main 메소드가 public이고 static인 이유는?
+~~~java
+  public static void main(String[] args) {...}
+~~~
+- static인 이유! 인스턴스 생성과 관계없이 제일 먼저 호출되는 메소드이다.
+~~~java
+  public static void main(String[] args) {...}
+~~~
+- public인 이유! main 메소드의 호출 명령은 외부로부터 시작되는 명령이다.
+단순히 일종의 약속으로 이해해도 괜찮다.
+
+### 3.3. main 메소드를 어디에 위치시킬 것인가?
+- main 메소드를 위한 클래스를 생성하는 것이 보편적이다.
+- 어디에 넣어도 상관 없음 단, 실행 방법이 달라진다.
+
+## 4. 또 다른 용도의 static 선언 
+
+### 4.1. static 초기화 블록
+- 값을 얻어올 때 static 변수를 초기화 하기 위해서 쓰는 것이다.
+
+### 4.2. static import 선언
+![image](https://user-images.githubusercontent.com/106478906/230918111-9337cd80-4cb1-4d5f-bdd2-05c58bdebf2f.png)
+
+-> 밑처럼 쓸 수 있긴 하지만 출처를 명확하게 밝혀주는 표현이 좋기 때문에 위의 방식을 추천한다.
+-> static 변수도 import할 수 있다는 사실은 알아두기.
 
 
 
