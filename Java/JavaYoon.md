@@ -847,7 +847,59 @@ ex) 운전 면허증을 보유한 사람과 보유하지 않은 사람
   double e = 2.718281;
   String se = String.valueOf(e);
 ~~~
-- String 인스턴스 "2.718281"를 생성해서 참조값을 반환한다.
+  - String 인스턴스 "2.718281"를 생성해서 참조값을 반환한다.
+  - 호출할 때 인스턴스 생성하고 호출하는 게 아니라 String 클래스의 이름을 대상으로 valueOf를 호출하면 값의 내용을 담고있는 문자열을 얻을 수 있다.
+
+### 3.5. 문자열 대상 + 연산과 += 연산
+- '+' 연산
+~~~java
+  System.out.println("funny" + "camp");
+           ↓
+  System.out.println("funny".concat("camp"));
+~~~
+-> 원래 참조값들끼리는 연산 불가한데, 컴파일러에 의해 concat으로 자동 변환되어 연산이 가능해지는 것이다.
+
+- '+=' 연산
+~~~java
+  String str = "funny";
+  str += "camp"; // str = str + "camp"
+        ↓
+  str = str.concat("camp")
+~~~
+
+### 3.6. 문자열과 기본 자료형의 + 연산
+![image](https://user-images.githubusercontent.com/106478906/231082338-da3ac750-2da8-4ab2-a223-78bb57e5295b.png)
+
+### 3.7. concat 메소드는 이어서 호출 가능
+~~~java
+  String str = "AB".concat("CD").concat("EF");
+  → String str = ("AB".concat("CD")).concat("EF");
+  → String str = "ABCD".concat("EF");
+  → String str = "ABCDEF";
+~~~
+
+### 3.8. 문자열 결합의 최적화를 하지 않을 경우
+![image](https://user-images.githubusercontent.com/106478906/231084030-ea3de4d4-1b28-4379-b386-985d7d8740be.png)
+
+### 3.9. 문자열 결합의 최적화를 진행 할 경우
+![image](https://user-images.githubusercontent.com/106478906/231085144-a840eebf-e050-4724-a748-8fa358d3e848.png)
+- toString메소드가 호출될 때 가지고 있는 내용을 한번에 문자열 인스턴스로 만든다.
+1) StringBuilder
+2) "<양>"
+3) toString() 
+-> 총 3개의 String 인스턴스 생성
+
+### 3.10. StringBuilder
+![image](https://user-images.githubusercontent.com/106478906/231087373-931dd2b3-5cf5-4a99-911e-ead5efef5f1e.png)
+
+### 3.11. StringBuffer
+![image](https://user-images.githubusercontent.com/106478906/231088950-8c32426a-d91c-4528-8584-83ea92f9f00b.png)
+
+
+
+
+
+
 
 
 
