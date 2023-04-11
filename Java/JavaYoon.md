@@ -728,7 +728,126 @@ System.out.print(str);
 -> 밑처럼 쓸 수 있긴 하지만 출처를 명확하게 밝혀주는 표현이 좋기 때문에 위의 방식을 추천한다.
 -> static 변수도 import할 수 있다는 사실은 알아두기.
 
+# Chapter 11 
 
+## 1. 메소드 오버로딩 (Method Overloading)
+
+### 1.1. 메소드 오버로딩
+: 호출된 메소드를 찾을 때 참조하게 되는 두 가지 정보
+1) 메소드의 이름
+2) 메소드의 매개변수 정보
+
+- 따라서 이 둘 중 하나의 형태가 다른 메소드를 정의하는 것이 가능하다.
+~~~java
+  class MyHome {
+    void mySimpleRoom(int n) {...}
+    void mySimpleRoom(int n1, int n2) {...}
+    void mySimpleRoom(double d1, double d2) {...}
+  }
+~~~
+- 메소드의 이름이 같아도 호출하는 매개변수의 정보가 달라지면 구분이 가능하다.
+
+### 1.2. 메소드 오버로딩의 예
+![image](https://user-images.githubusercontent.com/106478906/231054837-1e7a4ffc-0f4b-4712-91bf-f6dfcc22915d.png)
+
+- 매개변수의 자료형이 다르거나
+- 매개변수의 수가 다르거나
+- 반환형이 다른 것은 메소드 오버로딩의 조건이 아니다.
+
+### 1.3. 오버로딩 관련 피해야할 애매한 상황
+
+![image](https://user-images.githubusercontent.com/106478906/231055536-9260e06e-780a-4f83-8066-e289ceead5dd.png)
+
+- 첫번째거가 호출된다.
+  - 가장 가까이 있는 형변환 규칙을 따르기 때문이다.(int 보다 double이 더 가까움)
+  - but, 그 전에 강제 형변환을 해주는 것이 더 좋다.
+
+### 1.4. 생성자의 오버로딩
+- 생성자의 오버로딩을 통해 생성되는 인스턴스의 유형을 구분할 수 있다.
+ex) 여권이 있는 사람과 없는 사람
+ex) 운전 면허증을 보유한 사람과 보유하지 않은 사람
+
+### 1.5. 키워드 this를 이용한 다른 생성자의 호출
+- this : 이 인스턴스 
+
+![image](https://user-images.githubusercontent.com/106478906/231059983-d38a0709-4a77-4d00-b9e3-6a24ce0aefb1.png)
+
+-> 생성자가 먼저 호출이 되긴 됐는데 이 생성자 안에서 오버로딩된 다른 생성자를 다시 호출하는 것이다.
+- 생성자 안에서만 존재할 수 있고, 이 인스턴스의 다른 생성자를 의미한다.
+
+### 1.6. 키워드 this를 이용한 인스턴스 변수의 접근
+- 인스턴스 변수/메소드에 접근할 때 '.'을 찍는다.
+- 1.5에서 말한 메소드 호출의 성격 this와 인스턴스 변수/메소드에 접근을 의미하는 this 2가지가 존재한다.
+
+![image](https://user-images.githubusercontent.com/106478906/231061839-e6fe1ac1-43a8-4a19-adb5-75a15f23060a.png)
+
+- 매개 변수 이름과 인스턴스 변수의 이름이 중복될 경우 매개 변수를 우선으로 한다.
+  - 하지만 이 안에서도 인스턴스 변수를 쓰기 위해서 this 키워드를 사용하는 것이다.
+- this.data는 어느 위치에서 건 인스턴스 변수 data를 의미함
+
+## 2. String 클래스                                 
+
+### 2.1. String 인스턴스 생성의 두 가지 방법
+- 우리가 알고 있는 문자열도 스트링 클래스의 인스턴스이다.
+![image](https://user-images.githubusercontent.com/106478906/231064713-9a2cd148-a36e-4812-964b-d8facc69c20d.png)
+
+-> 둘 다 String 인스턴스의 생성으로 이어지고 그 결과 인스턴스의 참조 값이 반환된다.
+
+### 2.2. String 인스턴스와 println 메소드
+- println 메소드가 다양한 인자를 전달받을 수 있는 이유는 메소드 오버로딩 때문이다.
+~~~java
+  System.out.println("str");
+~~~
+- JVM이 String 인스턴스 생성하고, 문자열 정보를 저장하고 인스턴스의 참조값을 반환한다.
+
+### 2.3. String 인스턴스는 Immutable 인스턴스
+- Immutable 인스턴스 : 가지고 있는 데이터의 변경을 허용하지 않는다.
+- 바뀌지 않는 데이터를 참조하는 게 다이기 때문에, 다른 인스턴스 변수가 동시에 참조해도 문제가 생기지 않는다.
+
+### 2.4. String 인스턴스 기반 switch문 구성
+
+![image](https://user-images.githubusercontent.com/106478906/231067658-03a18efe-fe78-4af1-8d85-4c5e31bd2504.png)
+
+-> 이렇게도 구성 가능하다고 알아두기.
+
+## 3. String 클래스의 메소드
+- String 인스턴스는 Immutable 인스턴스이므로, 저장된 문자열의 값을 바꾸지 못한다. 
+  - 따라서 문자열 반환하는 메소드들은 새 문자열을 생성하는 것을 의미한다.
+
+### 3.1. 문자열 연결시키기
+- concat
+![image](https://user-images.githubusercontent.com/106478906/231073321-5e39b95d-eca9-46c7-b9d4-4148506e649d.png)
+
+### 3.2. 문자열의 일부 추출
+- substring
+- 인덱스 : 0을 기준으로 얼마나 떨어져있느냐
+~~~java
+  String str = "abcdefg";
+  str.substring(2);
+~~~
+-> 인덱스 2 이후의 내용으로 이뤄진 문자열 "cdefg" 반환
+~~~java
+  String str = "abcdefg";
+  str.substring(2, 4);
+~~~
+-> 인덱스 2 ~ 3에 위치한 내용의 문자열 반환(4까지가 아니라 4 앞까지)
+
+### 3.3 문자열의 내용 비교
+- equals
+  - 내용이 같으면 true
+- compareTo
+  - 내용이 같으면 0
+  - cmp = st1.compareTo(st2); 일때 stl이 사전편찬 순서상 앞에 오면 0보다 작은 값, 뒤에오면 0보다 큰 값을 반환한다.
+- compareToIgnoreCase
+  - 대소문자의 구분 하지 않는다.
+
+### 3.4. 기본 자료형의 값을 문자열로 바꾸기
+- valueOf
+~~~java
+  double e = 2.718281;
+  String se = String.valueOf(e);
+~~~
+- String 인스턴스 "2.718281"를 생성해서 참조값을 반환한다.
 
 
 
