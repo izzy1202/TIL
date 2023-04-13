@@ -895,6 +895,72 @@ ex) 운전 면허증을 보유한 사람과 보유하지 않은 사람
 ### 3.11. StringBuffer
 ![image](https://user-images.githubusercontent.com/106478906/231088950-8c32426a-d91c-4528-8584-83ea92f9f00b.png)
 
+# Chapter 12
+
+## 1. 콘솔 출력 (Console Output)
+- 콘솔 : 컴퓨터로 데이터를 입력,확인하는 장치이다.
+  - ex) 키보드, 모니터, 마우스
+
+### 1.1. toString 메소드
+- StringBuilder와의 공통점
+  1. 메소드의 이름
+  2. 인자를 전달받지 않는다.
+  3. 반환형이 String이다.
+
+~~~java
+class Box {
+  private String conts;
+  
+  Box(String cont) {
+    this.conts = cont;
+  }
+  public String toString() {
+    return conts; // 문자열 반환
+  }
+}
+
+public static void main(String[] args) {
+  StringBuilder stb = new StringBuilder("12");
+  stb.append(34);
+  System.out.println(stb.toString());
+  System.out.println(stb);
+  Box box = new Box("Camera");
+  System.out.println(box.toString());
+  System.out.println(box);
+}
+~~~
+- stb라는 참조 변수가 참조하고 있는 인스턴스는 StringBuilder이다.
+- 이 참조값을 바탕으로 참조값이 가리키는 인스턴스의 toString메소드를 호출한다.
+- 이때 반환되는 문자열을 println 메소드가 출력한다.(print 메소드도 마찬가지)
+- 자바에서 정의하는 모든 클래스는 toString 메소드를 가지고 있다.
+  - 내가 정의를 하지 않아도 존재한다.
+
+### 1.2. 문자열의 조합 printf 메소드
+- printf 메소드 : 문자열의 기본 포맷을 지정하고, 내가 원하는 데이터를 원하는 형태로 출력하도록 해준다.
+- 첫번째 인자로 무조건 문자열이 전달되어야 한다.
+- 서식 지정자 = 틀
+![image](https://user-images.githubusercontent.com/106478906/231747241-5080c91e-c5d8-47f6-b21a-9df2266d79c0.png)
+  - %g : 간단한 실수는 그냥 표기하는 것이 낫고, 복잡한 실수는 지수(e 표기법)로 표현하는 것이 낫기 때문에 그것을 알아서 결정해줘라.
+
+## 2. 콘솔 입력 (Console Input)   
+
+### 2.1. Scanner 클래스
+- 데이터를 스캔하는 클래스이다.
+- Scanner 클래스의 인스턴스 생성은 데이터를 뽑아 올 대상과의 연결을 의미한다. 연결 후에는 데이터 스캔이 가능하다.
+
+### 2.2. Scanner 클래스의 키보드 적용
+![image](https://user-images.githubusercontent.com/106478906/231755654-eac62f21-56d9-4c2a-b37d-58c370d124ec.png)
+
+- System.in이 참조하고 있는 인스턴스에 키보드 정보가 있어서, Scanner 인스턴스가 키보드와 연결을 시도해서 성공한다.
+- nextInt 메소드를 호출 : 정수를 하나 읽어들이겠다.
+  - 키보드로부터 입력된 데이터가 없으니 대기 상태가 된다.(콘솔에서의 입력을 기다린다)
+  - 입력하고 엔터치면 입력의 완료를 의미한다.
+  - 입력된 데이터(숫자)는 스캐너 클래스로 읽혀지고, 스캐너 클래스는 입력된 데이터를 반환한다. 
+- cf. Scanner 인스턴스 생성 이후에 데이터를 스캔하는 방법에 있어서는 차이가 없다. 즉 연결 대상에 의존적이지 않은 코드의 작성이 가능하다.
+
+
+
+
 
 
 
