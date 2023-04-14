@@ -1029,9 +1029,58 @@ public static void main(String[] args) {
 
 ## 3. 1차원 배열의 이해와 활용 Ⅲ
 
+### 3.1. 배열을 생성과 동시에 초기화
+![image](https://user-images.githubusercontent.com/106478906/231972381-c1d3de4d-a6bf-46f9-80c2-3266d27b49d8.png)
 
+-> 배열 생성만 하면 이렇게 배열의 개수를 정해주는데
 
+![image](https://user-images.githubusercontent.com/106478906/231972952-939dcc05-60e1-4bfd-9624-932ec206177a.png)
 
+-> 배열 생성과 동시에 초기화 하려면 초기화 하고자 하는 값을 {} 안에 넣어주고, [] 안을 비워야 한다.
+  - 배열의 길이를 컴파일러가 계산해서 넣어주도록 약속되어 있기 때문이다. 
+
+![image](https://user-images.githubusercontent.com/106478906/231973900-e6b3d3f0-1116-4f99-aa85-c2a62ba4396c.png)
+
+-> {} 앞부분을 생략해도 된다.
+
+### 3.2. 배열 대상 참조변수 선언의 두 가지 방법
+![image](https://user-images.githubusercontent.com/106478906/231974887-02dba594-d08e-4ae2-b127-58d9ae8d31cf.png)
+
+-> 가급적이면 위의 방법으로 선언하는게 좋다.
+
+### 3.3. 배열의 참조 값과 메소드
+![image](https://user-images.githubusercontent.com/106478906/231976233-fc3c0c3d-5ab7-4d1d-b7e8-022de2af9b69.png)
+
+- 참조변수 선언은 매개 변수 선언 자리에도 올 수 있다.
+  - 전달 인자로 int형 배열의 참조값이 전달됨을 의미한다.
+- 똑같은 ar이지만 위의 ar은 main 메소드 내에서 유효한 ar이고, 밑의 ar은 
+sumOfAry라는 메소드 내에서 유효한 ar이다.
+  - 지역이 다르면 이름이 같아도 상관없다.
+
+![image](https://user-images.githubusercontent.com/106478906/231978214-214dda90-6a27-4e2d-8957-5864aa11e4a8.png)
+  
+-> 배열의 참조 값 반환 가능
+  - int[len] 배열을 생성하고 ar이라는 참조변수로 이 인스턴스를 참조하고 있다.
+  - ar을 반환하므로 반환값에 int[]이 오는 것이다.
+- 결론 : 메소드 생성 위치에 상관없이 참조 값만 있으면 누구나 배열에 접근 가능하고, 참조 값은 주거니 받거니가 가능하다.
+
+## 4. 1차원 배열의 이해와 활용 Ⅳ
+
+### 4.1. 배열의 초기화 메소드
+- fill 메소드
+  - java.util.Arrays 클래스에 정의되어 있는 메소드, 원하는 값으로 배열 전부 또는 일부를 채울 때 사용하는 메소드
+  ~~~java
+    public static void fill(int[] a, int val)
+  ~~~
+  → 두 번째 인자로 전달된 값으로 배열 초기화
+  ~~~java
+  public static void fill(int[] a, int fromIndex, int toIndex, int val)
+  ~~~
+  → 인덱스 fromIndex ~ (toIndex-1)의 범위까지 val의 값으로 배열 초기화
+
+### 4.2. 배열 복사 메소드
+- arraycopy 메소드
+  -  java.lang.System 클래스에 정의되어 있는 메소드, 한 배열에 저장된 값을 다른 배열에 복사할 때 사용하는 메소드
 
 
 
