@@ -1081,6 +1081,56 @@ sumOfAry라는 메소드 내에서 유효한 ar이다.
 ### 4.2. 배열 복사 메소드
 - arraycopy 메소드
   -  java.lang.System 클래스에 정의되어 있는 메소드, 한 배열에 저장된 값을 다른 배열에 복사할 때 사용하는 메소드
+  ~~~java
+  public static void
+    arraycopy(Object src, int srcPos, Object dest, int destPos, int length)
+  ~~~
+  → 복사 원본의 위치: 배열 src의 인덱스 srcPos
+  → 복사 대상의 위치: 배열 dest의 인덱스 destPos
+  → 복사할 요소의 수: length
+  
+### 4.3. 배열 초기화와 복사의 예
+![image](https://user-images.githubusercontent.com/106478906/232010271-9d88bac2-28a9-47b1-ab63-0c1541bfb51b.png)
+
+### 4.4. main의 매개변수로 인자를 전달하는 예
+
+![image](https://user-images.githubusercontent.com/106478906/232018565-6516c13c-1aee-4786-8cd1-f9e4180babd4.png)
+
+-> 배열이 생성되고 arr이 갖고 있는 참조 값이 args에 인자로 전달된다.
+
+## 5. enhanced for문
+
+### 5.1. enhanced for문(for-each문) 의 이해
+
+![image](https://user-images.githubusercontent.com/106478906/232021438-a2626889-ff44-4cb1-acb1-f1ad56ec9952.png)
+
+-> ar이 가진 데이터를 e에 하나씩 넣고 데이터가 끝날때까지 실행한다.
+
+## 6. 다차원 배열의 이해와 활용
+![image](https://user-images.githubusercontent.com/106478906/232025969-e87c5037-e878-434f-a3fb-9eaa07da0b78.png)
+
+-> 길이가 4인 1차원 배열 3개가 묶였다.
+-> 세로가 3, 가로가 4이다.
+
+### 6.1. 2차원 배열의 실제 구조
+![image](https://user-images.githubusercontent.com/106478906/232029225-9f506aac-ef5e-4216-af71-4d9e45572b9b.png)
+
+- 다수의 1차원 배열을 엮어서 구성이 되는 2차원 배열
+![image](https://user-images.githubusercontent.com/106478906/232030300-047d5bea-1dc2-4b64-94fa-a582ce1d1d75.png)
+
+-> 2차원 배열은 독립된 1차원 배열의 묶음으로 구현되기 때문에 이런 형태로도 만들 수 있다.
+
+![image](https://user-images.githubusercontent.com/106478906/232030740-7ee32aea-4609-43c1-9fed-b691a637b1ed.png)
+
+- 3개의 1차원 배열이 있고, 순서대로 1/2/3/개의 요소를 저장할 수 있다.
+- 이 1차원 배열 3개를 묶는 배열이 만들어지며, 길이는 3이다.
+  -> 실제 arr이 가리키는 배열은 배열들을 묶는 배열이다.
+- 따라서 arr.length의 값은 3이고 arr[i].length은 1,2,3이 된다.
+
+
+
+
+
 
 
 
