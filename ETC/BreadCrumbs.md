@@ -5,7 +5,7 @@
 -----
 ## 목차
 1. 스냅샷
-
+2. Spring에서 GroupId, ArtifactId
 
 
 
@@ -20,3 +20,18 @@ Spring Boot에서 애플리케이션 생성 시, 개발이 완료된 최종 버�
 해당 애플리케이션의 현재 상태가 완료 버전이 아닌 중간 단계의 버전이라는 의미로 사용된다. 
 
 - Reference - [Snapshot 은 어떤 의미인가요?](https://www.inflearn.com/questions/268685/snapshot-%EC%9D%80-%EC%96%B4%EB%96%A4-%EC%9D%98%EB%AF%B8%EC%9D%B8%EA%B0%80%EC%9A%94)
+
+## 2. Spring에서 GroupId, ArtifactId
+
+### GroupId
+- GroupId는 프로젝트를 정의하는 고유한 식별자 정보이다. 
+- GroupId는 Java package name rules을 따라야 한다.
+
+### ArtifactId
+- 버전 없는 Jar파일 이름
+- 특수문자는 사용할 수 없고, 소문자만 사용되어야 한다.
+
+정리하자면, GroupId는 큰 틀을 의미하고, ArtifactId는 그 안에 작은 틀을 의미한다.  
+예를 들어 회사에서 정산시스템을 만든다면, GroupId는 회사명, ArtifactId는 주문정산, 월급정산 등 이런식으로 정의할 수 있다.
+
+- Reference - [[Spring]Group, Artifact이란?](https://developer-han.tistory.com/4)
