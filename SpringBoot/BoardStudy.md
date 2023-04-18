@@ -105,7 +105,7 @@ public class Board {
     private String content;
 }
 ~~~
-- [@Entity](https://siyoon210.tistory.com/25) : [JPA](https://gmlwjd9405.github.io/2019/08/04/what-is-jpa.html)에서 테이블을 의미한다.
+- [@Entity](https://siyoon210.tistory.com/25) : [JPA](https://gmlwjd9405.github.io/2019/08/04/what-is-jpa.html) 용어로, DB의 테이블을 의미한다.
 > [JPA의 기본키 매핑](https://choiseonjae.github.io/jpa/jpa-%EA%B8%B0%EB%B3%B8%ED%82%A4%EC%A0%84/)
 - @Id : primary key - 직접할당
 - @GeneratedValue(strategy = GenerationType.IDENTITY) - 자동생성
@@ -114,8 +114,26 @@ public class Board {
     - strategy = GenerationType.AUTO : 자동 지정
 - DB의 필드와 타입이 같게 필드를 지정해준다.
 
+### BoardController.java
+~~~java
+ @PostMapping("/board/writepro")
+    public String boardWritePro(String title, String content){
+        System.out.println("제목 : "+ title);
+        System.out.println("내용 : "+ content);
 
+        return "";
+    }
+~~~
+> 매개변수를 많아지면 하나씩 받아주기 번거롭다.
+~~~java
+ @PostMapping("/board/writepro")
+    public String boardWritePro(String title, String content){
+        System.out.println("제목 : "+ title);
+        System.out.println("내용 : "+ content);
 
+        return "";
+    }
+~~~
 
 
 
