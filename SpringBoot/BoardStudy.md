@@ -244,12 +244,43 @@ public class BoardService {
 ![image](https://user-images.githubusercontent.com/106478906/233642549-4e42adac-0403-49c1-86a0-c53ee0563129.png)
 > 리스트 페이지를 띄웠다.
 
+### BoardService.java
+~~~java
+public List<Board> boardList(){
+        return boardRepository.findAll();
+    }
+~~~
 
 > 글을 불러올 메소드
 
+### BoardController.java
+~~~java
+ @GetMapping("board/list")
+    public String boardList(Model model){
 
+        model.addAttribute("list",boardService.boardList());
+        return "boardlist";
+    }
+~~~
+> 데이터를 담아서 우리가 볼 페이지로 보내주기 위해 Model을 사용한다.
+- boardService.boardList()를 실행하면 반환되는 리스트를 list라는 이름으로 받아서 넘기겠다.
 
-
+### boardlist.html
+~~~html
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org"> //타임리프(데이터를 받아서 처리해주는 템플릿)를 사용하겠다.
+    
+    ...
+    
+             <tbody>
+                <tr th:each="board : ${list}">
+                    <td th:text="{board.id}">1</td>
+                    <td th:text="{board.title}">제목입니다.</td>
+                </tr>
+            </tbody>
+ ~~~
+    
+> each : 반복문(list에서 board가 없어질 때까지 반복하겠다.
 
 
 
