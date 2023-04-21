@@ -190,7 +190,7 @@ public class BoardService {
 ![image](https://user-images.githubusercontent.com/106478906/233626240-293a2ea4-3d3e-4bd5-b4cf-31715c2c21e9.png)
 > DB에 데이터가 잘 들어왔다.
 
-
+## 5. 게시글 리스트
 
 
 
