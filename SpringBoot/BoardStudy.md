@@ -191,10 +191,10 @@ public class BoardService {
 > DB에 데이터가 잘 들어왔다.
 
 ## 5. 게시글 리스트
-
-
-
-
+![image](https://user-images.githubusercontent.com/106478906/233629057-3bd2c35f-d502-41df-8c41-b5969675896b.png)
+> 프로시저를 이용하여 테스트 데이터를 넣어준다.
+- use board; : board 스키마를 사용하겠다.
+- call testDataInsert; : testDataInsert 프로시저를 실행해라.
 
 
 
