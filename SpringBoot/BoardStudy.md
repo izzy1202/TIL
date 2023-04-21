@@ -245,7 +245,7 @@ public class BoardService {
 > 리스트 페이지를 띄웠다.
 
 
-
+> 글을 불러올 메소드
 
 
 
