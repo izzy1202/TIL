@@ -196,6 +196,53 @@ public class BoardService {
 - use board; : board 스키마를 사용하겠다.
 - call testDataInsert; : testDataInsert 프로시저를 실행해라.
 
+### BoardController.java
+~~~java
+   @GetMapping("board/list")
+    public String boardList(){
+        return "boardlist";
+    }
+~~~
+
+### boardlist.html
+~~~html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>게시글 리스트 페이지</title>
+</head>
+<style>
+    .layout {
+        width : 500px;
+        margin : 0 auto;
+        margin-top : 40px;
+    }
+</style>
+<body>
+    <div class="layout">
+        <table>
+            <thead>
+                <tr>
+                    <th>글번호</th>
+                    <th>제목</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>제목입니다.</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</body>
+</html>
+~~~
+![image](https://user-images.githubusercontent.com/106478906/233642549-4e42adac-0403-49c1-86a0-c53ee0563129.png)
+> 리스트 페이지를 띄웠다.
 
 
 
