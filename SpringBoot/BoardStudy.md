@@ -125,15 +125,110 @@ public class Board {
     }
 ~~~
 > 매개변수를 많아지면 하나씩 받아주기 번거롭다.
+> Board entity 형식 그대로 받아올 수 있다.
+
+### Board.java
+~~~java
+@Data  //어노테이션 추가한다.
+@Entity
+public class Board {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    private String title;
+    private String content;
+}
+~~~
 ~~~java
  @PostMapping("/board/writepro")
-    public String boardWritePro(String title, String content){
-        System.out.println("제목 : "+ title);
-        System.out.println("내용 : "+ content);
-
+    public String boardWritePro(Board board){
+        System.out.println(board.getTitle());
         return "";
     }
 ~~~
+![image](https://user-images.githubusercontent.com/106478906/233619903-3e617a2c-e459-40f1-8d9a-93a20b83b23c.png)
+![image](https://user-images.githubusercontent.com/106478906/233619972-505d7394-b421-4585-8619-fd222baf61ee.png)
+> 제목이 잘 넘어온다.
+
+### BoardRepository.java
+~~~java
+@Repository //레파지토리임을 알려준다.
+public interface BoardRepository extends JpaRepository<Board,Integer> {
+}
+~~~
+> Board 엔티티, primary key로 지정한 컬럼의 타입(Integer)
+
+### BoardService.java
+~~~java
+@Service //서비스라고 알려줌
+public class BoardService {
+
+    @Autowired //원래는 자바에서 객체 생성할 때 new~ 이렇게 해야하지만 autowired 어노테이션을 사용하면 스프링 빈이 의존성을 주입해준다.
+    private BoardRepository boardRepository;
+    public void write(Board board){
+        boardRepository.save(board);
+    }
+}
+~~~
+> 이 BoardService를 BoardController에서 이용한다.
+
+### BoardController.java
+~~~java
+
+     @Autowired
+    private BoardService boardService; //의존성 주입
+
+    ...
+    
+    @PostMapping("/board/writepro")
+    public String boardWritePro(Board board){
+        boardService.write(board);
+        return "";
+    }
+~~~
+![image](https://user-images.githubusercontent.com/106478906/233626057-bfa2e77b-f680-4bbc-b837-ceb6604d8b3d.png)
+![image](https://user-images.githubusercontent.com/106478906/233626240-293a2ea4-3d3e-4bd5-b4cf-31715c2c21e9.png)
+> DB에 데이터가 잘 들어왔다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
