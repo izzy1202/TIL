@@ -274,14 +274,16 @@ public List<Board> boardList(){
     
              <tbody>
                 <tr th:each="board : ${list}">
-                    <td th:text="{board.id}">1</td>
-                    <td th:text="{board.title}">제목입니다.</td>
+                    <td th:text="${board.id}">1</td>
+                    <td th:text="${board.title}">제목입니다.</td>
                 </tr>
             </tbody>
  ~~~
     
 > each : 반복문(list에서 board가 없어질 때까지 반복하겠다.
 
+![image](https://user-images.githubusercontent.com/106478906/233661066-779faa6d-6787-44f0-929e-02d2e4ac0d2b.png)
+> 게시글 불러오기 성공
 
 
 
