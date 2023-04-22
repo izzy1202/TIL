@@ -519,3 +519,18 @@ public List<Board> boardList(){
         return "redirect:/board/list";
     }
 ~~~
+![image](https://user-images.githubusercontent.com/106478906/233758259-4428425c-2248-476e-962d-167582758091.png)
+
+> 원래 JPA에서는 수정할때 덮어씌우는 방식을 절대 사용하면 안된다. JPA에는 변경감지(Dirty Checking)이라는 기능이 있어서 트랜잭션 내에서 DB에서 불러온 엔티티(객체)에 수정이 이뤄질경우 트랜잭션이 끝날 때 자동으로 DB에 반영되기 때문에 변경 감지 기능을 이용해서 수정해야 한다. 본 강의는 무작정 따라하기 강의라서 이 방식을 사용했지만 JPA 변경감지, JPA merge, JPA persist 등에 대한 추가적으로 공부가 필요하다.
+
+
+
+
+
+
+
+
+
+
+
+
