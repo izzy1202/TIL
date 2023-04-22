@@ -620,8 +620,49 @@ public List<Board> boardList(){
         return boardRepository.findAll(pageable);
     }
 ~~~
+>findAll이라는 메소드를 사용하면 DB의 모든 정보를 가져오게 되는데, pageable이라는 클래스를 넘겨주게 되면 그 안에 페이지가 몇페이지인지, 한번에 보여줄 글의 개수 등의 정보를 담아서 보내줄 수 있다.
+
 ![image](https://user-images.githubusercontent.com/106478906/233765375-c64e2f6e-2ab6-45e0-a525-9bda12e2de11.png)
 > 매개변수가 없는 경우에는 return값이 리스트로 넘어오는데, 지금의 경우 Page라는 클래스로 return하게 된다.
+
+![image](https://user-images.githubusercontent.com/106478906/233765511-d539877d-957c-4b5e-b145-a771c1ebcf7d.png)
+![image](https://user-images.githubusercontent.com/106478906/233765554-c2987867-5f56-410a-93f0-7bd1644204bf.png)
+
+> http://localhost:8090/board/list?page=0 주소를 이렇게 입력해도 같은 결과가 나온다.(0페이지부터 시작하기 때문)
+
+![image](https://user-images.githubusercontent.com/106478906/233765604-f9856363-3a05-4268-8594-32a6318afdd3.png)
+> http://localhost:8090/board/list?page=1&size=5 이렇게 한 페이지에 보여줄 글의 개수를 정해줄 수도 있다.
+
+![KakaoTalk_20230422_150452703](https://user-images.githubusercontent.com/106478906/233765925-6ac6a806-981a-43d7-b982-be146c428429.png)
+![KakaoTalk_20230422_150452703_01](https://user-images.githubusercontent.com/106478906/233765926-a53e34a5-489e-4b33-a55e-9423d0618ed8.png)
+
+> list.getPageable().getPageNumber() : pageable에서 넘어온 현재 페이지를 가져올 수 있다.
+
+### BoardController.java
+~~~java
+//리스트 불러오기
+    @GetMapping("board/list")
+    public String boardList(Model model, @PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable){
+
+        Page<Board> list = boardService.boardList(pageable);
+
+        int nowPage = list.getPageable().getPageNumber() + 1; // pageable이 갖고 있는 페이지는 0부터 시작하기 때문에 1을 더해준다.
+        int startPage = Math.max(nowPage - 4, 1); // 매개변수에 들어온 두 값을 비교해서 높은 값을 반환한다.
+        int endPage = Math.min(nowPage + 5, list.getTotalPages()); // 매개변수에 들어온 두 값을 비교해서 낮은 값을 반환한다.
+
+        model.addAttribute("list", list);
+        model.addAttribute("nowPage", nowPage);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
+        return "boardlist";
+    }
+~~~
+### boartlist.html
+~~~html
+...
+
+
+> <th:block> : 굳이 태그로 감쌀 필요 없는 부분을 타임리프 문법을 이용해서 사용할 때 쓰는 태그이다.
 
 
 
