@@ -461,11 +461,38 @@ public List<Board> boardList(){
 </body>
 </html>
 ~~~
+![image](https://user-images.githubusercontent.com/106478906/233757098-cc05c3a0-8487-4843-a7e7-cd7ede654de1.png)
+> 수정 버튼을 누르면 수정 폼이 뜬다.
 
+![image](https://user-images.githubusercontent.com/106478906/233757123-91f8a11c-17eb-482b-ae65-3105aa1a4ee6.png)
+> 수정 폼에 원래 데이터도 같이 가져와야 한다.
 
+![image](https://user-images.githubusercontent.com/106478906/233757250-a0018187-3426-40a6-acbb-d96f9b6eb4b1.png)
 
+> 쿼리 스트링 방식(view?id=000) 방식보다 PathVariable 방식이 더 깔끔하다.
 
+### BoardController.java
+~~~java
+//게시글 수정 페이지 불러오기
+    @GetMapping("/board/modify/{id}")
+    public String boardModify(@PathVariable("id") Integer id,
+                              Model model){
+        
+        //게시글 원본 데이터 불러오기
+        model.addAttribute("board",boardService.boardView(id));
+        return "boardmodify";
+    }
+~~~
 
+### boardmodify.html
+~~~html
+    <form action="/board/writepro" method="post">
+        <input name="title" type="text" th:value="${board.title}">
+        <textarea name="content" th:text="${board.content}"></textarea>
+        <button type="submit">작성</button>
+    </form>
+~~~
+> textarea는 value가 안들어가서 text로 넣어줘야 한다.
 
 
 
