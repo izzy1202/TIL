@@ -683,6 +683,77 @@ public List<Board> boardList(){
 
 > findByTitleContaining : 대소문자 입력 주의
 
+### BoardRepository.java
+~~~java
+@Repository
+public interface BoardRepository extends JpaRepository<Board,Integer> {
+
+    Page<Board> findByTitleContaining(String searchKeyword, Pageable pageable);
+}
+~~~
+### BoardService.java
+~~~java
+    //검색
+    public Page<Board> boardSearchList(String searchKeyword, Pageable pageable){
+        return boardRepository.findByTitleContaining(searchKeyword, pageable);
+    }
+~~~
+### BoardController.java
+~~~java
+     @GetMapping("board/list")
+     public String boardList(Model model,
+                            @PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable,
+                            String searchKeyword){
+
+        Page<Board> list = null;
+
+        if(searchKeyword == null){
+            list = boardService.boardList(pageable);
+        }else{
+            list = boardService.boardSearchList(searchKeyword, pageable);
+        }
+
+    ...
+~~~
+![image](https://user-images.githubusercontent.com/106478906/233783478-57d8379e-9ada-4b7e-9571-2670b66d26df.png)
+> 제목에 '11'을 포함하는 게시글들을 보여준다.
+
+> 2 페이지를 누르면 검색된 리스트가 아닌, 기존 리스트의 2 페이지로 넘어가는 문제가 발생한다.
+
+![image](https://user-images.githubusercontent.com/106478906/233783734-b1a16f21-9e87-4b85-862c-c3213fb9ac2a.png)
+> http://localhost:8090/board/list?searchKeyword=11&page=1 이렇게 주소 뒤에 page를 붙여줘야 검색 결과의 2페이지로 이동한다.
+
+### boardlist.html
+~~~html
+    ...
+        <th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
+            <a th:if="${page != nowPage}" th:href="@{/board/list(page = ${page - 1}, searchKeyword = ${param.searchKeyword})}",  th:text="${page}"></a>
+            <strong th:if="${page == nowPage}"  th:text="${page}" style="color : red"></strong>
+        </th:block>
+    </div>
+~~~
+> searchKeyword = ${param.searchKeyword})}" 이 부분 추가하면 주소에 page 안붙여도 검색 결과 2페이지로 잘 이동한다.
+- param이 쿼리 스트링중에 특정 키워드(searchKeyword)를 가져와서 앞의 searchKeyword에 넣어준다.
+- searchKeyword라는 파라미터가 url에 있을때 값을 물고가기 때문에 페이징이 유지가 된다.
+### boardlist.html
+~~~html
+    ...
+        <form th:action="@{/board/list}" method="get">
+            <input type="text" name="searchKeyword">
+            <button type="submit">검색</button>
+        </form>
+~~~
+
+
+
+
+
+
+
+
+
+
+
 
 
 
