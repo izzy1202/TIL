@@ -1,3 +1,12 @@
+# <스프링부트 게시판 무작정 따라하기> 강의 내용 정리
+>[강의 링크](https://www.youtube.com/watch?v=frI5CoZe-vE&list=PLZzruF3-_clsWF2aULPsUPomgolJ-idGJ&index=1)
+> 총 18강
+> 
+>모든 내용을 정리하지는 않음
+---
+
+
+
 ## 1. 프로젝트 생성 해보기
 
 ~~~java
@@ -580,7 +589,39 @@ public List<Board> boardList(){
 > 게시글 수정도 알럿창으로 뜨게 수정했다.
 > 수정은 작성과 다르게 수정 완료 알럿창이 뜬 후, 상세페이지를 다시 띄워주었다.
 
- 
+## 10. 페이징 처리
+![KakaoTalk_20230422_142928625](https://user-images.githubusercontent.com/106478906/233764780-50126165-0daf-4655-831e-ed42cd5db4a3.png)
+
+- JPA는 페이지가 0부터 시작한다.
+- size : 한 페이지에서 보여줄 게시글의 수
+
+> 최근에 쓴 글이 제일 위에 올라오도록 게시글의 정렬 순서도 바꿔줘야 한다.
+
+### BoardController.java
+~~~java
+    //리스트 불러오기
+    @GetMapping("board/list")
+    public String boardList(Model model, @PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable){
+
+        model.addAttribute("list",boardService.boardList(pageable));
+        return "boardlist";
+    }
+~~~
+![image](https://user-images.githubusercontent.com/106478906/233764987-342e545a-603a-4899-a931-be413c036b40.png)
+> domain 패키지 안에 있는 Pageable 클래스를 사용한다.
+> @PageableDefault 어노테이션을 써서 설정해줄 수 있다.
+- sort : 정렬 기준
+- direction : 정렬을 어떻게 할건지(오름차순, 내림차순)
+
+### BoardService.java
+~~~java
+    //게시글 리스트 처리
+    public Page<Board> boardList(Pageable pageable){
+        return boardRepository.findAll(pageable);
+    }
+~~~
+![image](https://user-images.githubusercontent.com/106478906/233765375-c64e2f6e-2ab6-45e0-a525-9bda12e2de11.png)
+> 매개변수가 없는 경우에는 return값이 리스트로 넘어오는데, 지금의 경우 Page라는 클래스로 return하게 된다.
 
 
 
