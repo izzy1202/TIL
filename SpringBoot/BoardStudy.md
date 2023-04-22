@@ -469,7 +469,7 @@ public List<Board> boardList(){
 
 ![image](https://user-images.githubusercontent.com/106478906/233757250-a0018187-3426-40a6-acbb-d96f9b6eb4b1.png)
 
-> 쿼리 스트링 방식(view?id=000) 방식보다 PathVariable 방식이 더 깔끔하다.
+> URL에 파라미터를 넘길 때 쿼리 스트링 방식(view?id=000) 방식보다 PathVariable 방식이 더 깔끔하다.
 
 ### BoardController.java
 ~~~java
@@ -510,22 +510,63 @@ public List<Board> boardList(){
 ~~~java
 //게시글 수정 처리
     @PostMapping("/board/update/{id}")
-    public String boardUpdate(@PathVariable("id") Integer id, Board board){
-        
-        Board boardTemp = boardService.boardView(id); // 기존 글이 boardTemp에 담겨져서 온다.
-        boardTemp.setTitle(board.getTitle());  // 새로 입력한 내용을 기존 내용에 덮어쓴다.
-        boardTemp.setContent(board.getContent());
-        
-        return "redirect:/board/list";
-    }
+        public String boardUpdate(@PathVariable("id") Integer id, Board board){
+
+            Board boardTemp = boardService.boardView(id); // 기존 글이 boardTemp에 담겨져서 온다.
+            boardTemp.setTitle(board.getTitle());  // 새로 입력한 내용을 기존 내용에 덮어쓴다.
+            boardTemp.setContent(board.getContent());
+
+            boardService.write(board); //DB에 저장한다.
+
+            return "redirect:/board/list";
+        }
 ~~~
 ![image](https://user-images.githubusercontent.com/106478906/233758259-4428425c-2248-476e-962d-167582758091.png)
+![image](https://user-images.githubusercontent.com/106478906/233761131-53765a73-f158-466c-98c3-f6f764cf21f3.png)
 
+> 수정이 완료됐다.
 > 원래 JPA에서는 수정할때 덮어씌우는 방식을 절대 사용하면 안된다. JPA에는 변경감지(Dirty Checking)이라는 기능이 있어서 트랜잭션 내에서 DB에서 불러온 엔티티(객체)에 수정이 이뤄질경우 트랜잭션이 끝날 때 자동으로 DB에 반영되기 때문에 변경 감지 기능을 이용해서 수정해야 한다. 본 강의는 무작정 따라하기 강의라서 이 방식을 사용했지만 JPA 변경감지, JPA merge, JPA persist 등에 대한 추가적으로 공부가 필요하다.
 
+## 9. 메시지 띄우기
+### message.html
+~~~html
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script th:inline="javascript"></script>
+
+    /*<!CDATA[*/
+
+    var message = [[${message}]];
+    alert(message);
+
+    location.replace([[${searchUrl}]]);
 
 
+    /*]]>*/
+</body>
+</html>
+~~~
+> 컨트롤러에서 받아온 변수를 적용시켜줘야 한다.
+- 컨트롤러에서 메세지를 전달해주면 alert가 메세지를 화면에 띄워주고 location.replace으로 경로를 이동시켜 준다.
 
+### BoardController.java
+~~~java
+  //작성버튼 누르면 데이터 DB에 넘기기
+    @PostMapping("/board/writepro")
+    public String boardWritePro(Board board,Model model){
+        boardService.write(board);
+
+        model.addAttribute("message","글 작성이 완료되었습니다.");
+        model.addAttribute("searchUrl","/board/list");
+        return "message";
+    }
+~~~    
 
 
 
