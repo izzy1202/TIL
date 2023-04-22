@@ -671,9 +671,15 @@ public List<Board> boardList(){
 </html>
 ~~~
 > <th:block> : 굳이 태그로 감쌀 필요 없는 부분을 타임리프 문법을 이용해서 사용할 때 쓰는 태그이다.
+
 ![image](https://user-images.githubusercontent.com/106478906/233767302-89f8d4b4-a8a1-4039-9ec2-abaae6e6df0a.png)
+
 > 페이징 처리 한 결과이다.
 
+## 11. 검색 기능
+![KakaoTalk_20230422_155322173](https://user-images.githubusercontent.com/106478906/233768073-df442b50-a48c-4f29-aca6-d67e18366b74.png)
+![KakaoTalk_20230422_155322173_01](https://user-images.githubusercontent.com/106478906/233768074-6bc2998b-a93a-409f-9538-5aeccbd10a33.png)
+![KakaoTalk_20230422_155322173_02](https://user-images.githubusercontent.com/106478906/233768078-180c0a61-283a-4d7d-ad87-2dda99b16a98.png)
 
 
 
