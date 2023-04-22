@@ -743,7 +743,8 @@ public interface BoardRepository extends JpaRepository<Board,Integer> {
             <button type="submit">검색</button>
         </form>
 ~~~
-
+![image](https://user-images.githubusercontent.com/106478906/233787232-c426660b-3864-4518-879b-fe2bcd178f7f.png)
+> '메세'라고만 입력해도 제목에 메세가 포함된 글이 나온다.
 
 
 
