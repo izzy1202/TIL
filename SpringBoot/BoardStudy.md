@@ -398,11 +398,69 @@ public List<Board> boardList(){
 ![image](https://user-images.githubusercontent.com/106478906/233755764-6c355313-4875-41da-a01c-b247cf675cbb.png)
 > 5번 게시글이 삭제됐다.
 
+### boardview.html
+~~~html
+    <a th:href="@{/board/delete(id=${board.id})}">글삭제</a>
+~~~
+![image](https://user-images.githubusercontent.com/106478906/233756388-bf867e0a-427a-411c-81a5-1cf322425b39.png)
+> 글 삭제가 잘 된다.
 
+## 8. 게시글 수정
+- cf. 인텔리제이 : shift 두번 누르면 검색 가능
+### boardview.html
+~~~html
+    <a th:href="@{/board/modify/{id}(id=${board.id})}">글수정</a>
+~~~
+### BoardController.java
+~~~java
+ //게시글 수정 페이지 불러오기
+    @GetMapping("/board/modify/{id}")
+    public String boardModify(@PathVariable("id") Integer id){
+        return "boardmodify";
+    }
+~~~
+> @PathVariable : url이 들어왔을 때 / 뒤의 {id}가 인식돼서 Integer 형태의 id로 들어온다.
 
+### boardmodify.html (글 작성폼과 동일)
+~~~html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>게시글 수정폼</title>
+</head>
 
+<style>
+    .layout {
+        width : 500px;
+        margin : 0 auto;
+        margin-top : 40px;
+    }
 
+    .layout input {
+        width : 100%;
+        box-sizing : border-box;
+        margin-top : 10px;
+    }
 
+    .layout textarea {
+        width : 100%;
+        margin-top : 10px;
+        min-height : 300px;
+    }
+
+</style>
+<body>
+<div class="layout">
+  <form action="/board/writepro" method="post">
+    <input name="title" type="text">
+    <textarea name="content"></textarea>
+    <button type="submit">작성</button>
+  </form>
+</div>
+</body>
+</html>
+~~~
 
 
 
