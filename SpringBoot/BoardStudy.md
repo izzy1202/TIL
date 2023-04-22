@@ -681,7 +681,7 @@ public List<Board> boardList(){
 ![KakaoTalk_20230422_155322173_01](https://user-images.githubusercontent.com/106478906/233768074-6bc2998b-a93a-409f-9538-5aeccbd10a33.png)
 ![KakaoTalk_20230422_155322173_02](https://user-images.githubusercontent.com/106478906/233768078-180c0a61-283a-4d7d-ad87-2dda99b16a98.png)
 
-
+> findByTitleContaining : 대소문자 입력 주의
 
 
 
