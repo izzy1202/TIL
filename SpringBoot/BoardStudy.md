@@ -352,6 +352,51 @@ public List<Board> boardList(){
 ![image](https://user-images.githubusercontent.com/106478906/233754267-7a8a08ca-dc1e-40c8-a35e-7137286a08ae.png)
 > DB의 첫번째 글이 나온다.
 
+### boardlist.html
+~~~html
+        <tbody>
+            <tr th:each="board : ${list}">
+                <td th:text="${board.id}">1</td>
+                <td>
+                    <a th:text="${board.title}" th:href="@{/board/view(id=${board.id})}"></a>
+                </td>
+            </tr>
+        </tbody>
+~~~
+> 게시글 제목을 눌렀을 때 글 번호로 해당 게시글을 불러온다.
+
+![image](https://user-images.githubusercontent.com/106478906/233754675-cadfd161-d05c-454f-9a14-1fa4289f6802.png)
+
+## 7. 게시글 삭제
+### boardview.html
+~~~html
+<body>
+
+<h1 th:text="${board.title}">제목입니다.</h1>
+<p th:text="${board.content}">내용이 들어갈 부분입니다.</p>
+<a href="#">글삭제</a>
+</body>
+~~~
+### boardService.java
+~~~java
+ //특정 게시글 삭제
+    public void boardDelete(Integer id){
+        boardRepository.deleteById(id);
+    }
+~~~
+### boardController.java
+~~~java
+//게시글 삭제
+    @GetMapping("/board/delete")
+    public String boardDelete(Integer id){
+        boardService.boardDelete(id);
+
+        return "redirect:/board/list";
+    }
+~~~
+![image](https://user-images.githubusercontent.com/106478906/233755756-b24bf2f7-2e0d-44f4-ba5e-f423051e6301.png)
+![image](https://user-images.githubusercontent.com/106478906/233755764-6c355313-4875-41da-a01c-b247cf675cbb.png)
+> 5번 게시글이 삭제됐다.
 
 
 
