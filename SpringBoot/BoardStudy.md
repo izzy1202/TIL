@@ -285,14 +285,72 @@ public List<Board> boardList(){
 ![image](https://user-images.githubusercontent.com/106478906/233661066-779faa6d-6787-44f0-929e-02d2e4ac0d2b.png)
 > 게시글 불러오기 성공
 
+## 6. 게시글 상세 페이지
+### boardview.html
+~~~html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>게시글 상세 페이지</title>
+</head>
+<body>
 
+<h1>제목입니다.</h1>
+<p>내용이 들어갈 부분입니다.</p>
+</body>
+</html>
+~~~
+### BoardController.java
+~~~java
+//게시글 상세 페이지 불러오기
+    @GetMapping("/board/view")
+    public String boardView(){
 
+        return "boardview";
+    }
+ ~~~
+![image](https://user-images.githubusercontent.com/106478906/233753543-0269cba5-0323-4488-8a7a-9170b4264deb.png)
+> 내용이 불러와졌다.
 
+> findById로 어떤 게시글을 불러올지 지정해준다.
 
+![image](https://user-images.githubusercontent.com/106478906/233753811-b3ff8540-f989-458e-800e-b1cb37236570.png)
+> 오류가 나는 이유는 optional값으로 받아와지기 때문이다.
 
+![image](https://user-images.githubusercontent.com/106478906/233753899-13003130-3201-4a5b-b14e-339aee8e379c.png)
+> 뒤에 get()을 붙이면 오류가 사라진다.
 
+### BoardController.java
+~~~java
+//게시글 상세 페이지 불러오기
+    @GetMapping("/board/view") // localhost:8090/board/view?id=1
+    public String boardView(Model model, Integer id){
 
+        model.addAttribute("board",boardService.boardView(id));
+        return "boardview";
+    }
+ ~~~
+> 주소의 view?id=1 에서 1이 Integer id로 들어가고, 들어간 1이 boardView(id)로 들어간다.
+- 파라미터와 get 방식이다.
 
+### boardview.html
+~~~html
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>게시글 상세 페이지</title>
+</head>
+<body>
+
+<h1 th:text="${board.title}">제목입니다.</h1>
+<p th:text="${board.content}">내용이 들어갈 부분입니다.</p>
+</body>
+</html>
+~~~
+![image](https://user-images.githubusercontent.com/106478906/233754267-7a8a08ca-dc1e-40c8-a35e-7137286a08ae.png)
+> DB의 첫번째 글이 나온다.
 
 
 
