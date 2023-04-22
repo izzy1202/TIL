@@ -661,8 +661,20 @@ public List<Board> boardList(){
 ~~~html
 ...
 
+        <th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
+            <a th:if="${page != nowPage}" th:href="@{/board/list(page = ${page - 1})}" th:text="${page}"></a>
+            <strong th:if="${page == nowPage}"  th:text="${page}" style="color : red"></strong>
+        </th:block>
+    </div>
 
+</body>
+</html>
+~~~
 > <th:block> : 굳이 태그로 감쌀 필요 없는 부분을 타임리프 문법을 이용해서 사용할 때 쓰는 태그이다.
+![image](https://user-images.githubusercontent.com/106478906/233767302-89f8d4b4-a8a1-4039-9ec2-abaae6e6df0a.png)
+> 페이징 처리 한 결과이다.
+
+
 
 
 
