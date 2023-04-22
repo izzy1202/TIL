@@ -538,7 +538,7 @@ public List<Board> boardList(){
 </head>
 <body>
 
-<script th:inline="javascript"></script>
+<script th:inline="javascript">
 
     /*<!CDATA[*/
 
@@ -549,11 +549,13 @@ public List<Board> boardList(){
 
 
     /*]]>*/
+</script>
+
 </body>
 </html>
 ~~~
 > 컨트롤러에서 받아온 변수를 적용시켜줘야 한다.
-- 컨트롤러에서 메세지를 전달해주면 alert가 메세지를 화면에 띄워주고 location.replace으로 경로를 이동시켜 준다.
+- 컨트롤러에서 메세지를 전달해주면 alert가 메세지를 화면에 띄워주고 location.replace가 searchUrl로 경로를 이동시켜 준다.
 
 ### BoardController.java
 ~~~java
@@ -567,7 +569,16 @@ public List<Board> boardList(){
         return "message";
     }
 ~~~    
+> model에 담겨서 message.html의 location.replace([[${searchUrl}]]); 여기로 넘어온다.
 
+![image](https://user-images.githubusercontent.com/106478906/233762498-c5496719-ee50-4002-bba0-998fe3268e87.png)
+![image](https://user-images.githubusercontent.com/106478906/233762505-ac8f4be8-35ac-4b16-87bf-db1e560ab87f.png)
+> 글 작성 완료 알럿창이 뜨도록 하였다.
+> 알럿창이 뜬 후, 리스트를 띄워주었다.
+
+![image](https://user-images.githubusercontent.com/106478906/233762890-686918bb-b389-4da1-868b-ea0cf01b223f.png)
+> 게시글 수정도 알럿창으로 뜨게 수정했다.
+> 수정은 작성과 다르게 수정 완료 알럿창이 뜬 후, 상세페이지를 다시 띄워주었다.
 
 
 
