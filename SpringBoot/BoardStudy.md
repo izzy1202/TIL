@@ -455,7 +455,7 @@ public List<Board> boardList(){
   <form action="/board/writepro" method="post">
     <input name="title" type="text">
     <textarea name="content"></textarea>
-    <button type="submit">작성</button>
+    <button type="submit">수정</button>
   </form>
 </div>
 </body>
@@ -494,9 +494,28 @@ public List<Board> boardList(){
 ~~~
 > textarea는 value가 안들어가서 text로 넣어줘야 한다.
 
+![image](https://user-images.githubusercontent.com/106478906/233757814-3fcd5c0e-9757-49f0-9ad1-6da9f5257e22.png)
 
+> 내용이 잘 넘어온다.
 
-
-
-
-
+### boardmodify.html
+~~~html
+    <form th:action="@{/board/update/{id}(id=${board.id})}" method="post">
+        <input name="title" type="text" th:value="${board.title}">
+        <textarea name="content" th:text="${board.content}"></textarea>
+        <button type="submit">수정</button>
+    </form>
+~~~
+### BoardController.java
+~~~java
+//게시글 수정 처리
+    @PostMapping("/board/update/{id}")
+    public String boardUpdate(@PathVariable("id") Integer id, Board board){
+        
+        Board boardTemp = boardService.boardView(id); // 기존 글이 boardTemp에 담겨져서 온다.
+        boardTemp.setTitle(board.getTitle());  // 새로 입력한 내용을 기존 내용에 덮어쓴다.
+        boardTemp.setContent(board.getContent());
+        
+        return "redirect:/board/list";
+    }
+~~~
