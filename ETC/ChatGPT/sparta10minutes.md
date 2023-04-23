@@ -119,4 +119,12 @@
     
 ## 4. 배포하기
 
+> 깃허브에 레파지토리를 생성한 후, 파일을 올려주는데 파일 이름이 index여야 한다.
+    
+![image](https://user-images.githubusercontent.com/106478906/233824980-5b397f7b-58d9-4e4a-9118-618744ebbb4d.png)
 
+> settings - pages - branch 에서 none 을 main으로 바꿔주고 save를 하고 30초~1분 기다리면 사이트가 생성된다.
+    
+> 파일 수정하고 싶을 경우, 파일을 삭제하고 다시 업로드 하는 것이 좋다.
+    
+  
