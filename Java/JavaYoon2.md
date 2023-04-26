@@ -194,6 +194,17 @@ C2.size = ... // Cake의 size에 접근
 - 인스턴스 변수는 오버라이딩 되지 않는다. 따라서 참조변수의 형에 따라 접근하는 멤버가 결정된다.
 - 하지만 이런 식으로 같게 변수 선언은 하지 않는 것이 좋다.
 
+## 5. instanceof 연산자 
+- 참조가능성을 묻는 것이다.
+~~~java
+  if(ref instanceof ClassName)
+~~~
+> ref가 ClassName 클래스의 인스턴스를 참조하면 true 반환
 
+>ref가 ClassName를 상속하는 클래스의 인스턴스이면 true 반환
 
+### 5.1. instanceof 연산자의 활용
+![image](https://user-images.githubusercontent.com/106478906/234596192-634f2953-494b-4fb4-9a93-6fa2ef6dd768.png)
+
+- 상속은 연관된 일련의 클래스들에 대해 공통적인 규약을 정의할 수 있다.
 
