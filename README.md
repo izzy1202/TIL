@@ -17,4 +17,4 @@
 
 ### SPRING
 * [스프링부트 게시판 무작정 따라하기](https://github.com/izzy1202/TIL/blob/main/SpringBoot/BoardStudy.md)
-* [스프링부트 게시판 프로젝트](https://github.com/izzy1202/TIL/blob/main/SpringBoot/BoardStudy.md)
+
