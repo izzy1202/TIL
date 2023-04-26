@@ -91,4 +91,109 @@
 ![image](https://user-images.githubusercontent.com/106478906/234558225-d780faac-e85b-4e5f-a6a6-2885658548a7.png)
 - 자식 클래스의 인스턴스에 자식 클래스(스마트폰)의 참조 변수로 접근하면 모든 메소드를 다 호출할 수 있지만 부모 클래스(모바일폰)의 참조 변수로 접근하면 부모 클래스안의 메소드만 호출 가능하다.
 
+## 3. 메소드 오버라이딩 Ⅱ
+![image](https://user-images.githubusercontent.com/106478906/234561310-383dd35a-f8e5-40e9-a697-17d3ef7f94a9.png)
+- 가리키는 인스턴스는 StrawberryCheeseCake인스턴스로 동일하지만, 접근 권한은 다르다.
+
+~~~java
+class Cake {
+public void sweet() {...}
+}
+
+class CheeseCake extends Cake {
+public void milky() {...}
+}
+
+CheeseCake ca1 = new CheeseCake();
+Cake ca2 = ca1; // 가능!
+
+Cake ca3 = new CheeseCake();
+CheeseCake ca4 = ca3; // 불가능!
+~~~
+
+- 컴파일러가 치즈케이크가 참조하는 대상을 케이크가 참조가 가능하다는 것을 알고 위의 대입을 허용해준다. 
+- 컴파일러는 문장단위로 기억하기 때문에 이 시점에 컴파일러 및 가상머신은 ca3가 참조하는 대상을 Cake 인스턴스로 판단한다.
+  - ca3가 참조하는 인스턴스의 정확한 클래스 정보는 유지하지 않는다.
+~~~java
+class Cake {
+public void sweet() {...}
+}
+
+class CheeseCake extends Cake {
+public void milky() {...}
+}
+  
+Cake cake = new CheeseCake(); // 가능
+CheeseCake[] cakes = new CheeseCake[10]; // 가능
+Cake[] cakes = new CheeseCake[10]; // 가능
+~~~
+  
+- 상속의 관계가 배열 인스턴스의 참조 관계까지 이어진다.
+  - 치즈케이크형 배열 인스턴스는 치즈케이크형 배열의 참조변수로도 참조가 가능하지만, 상속관계에 있는 케이크형 배열의 참조변수로도 참조가 가능하다.
+
+## 4. 메소드 오버라이딩 Ⅲ
+~~~java
+class Cake {
+public void yummy() {
+System.out.println("Yummy Cake");
+  }
+}
+
+class CheeseCake extends Cake {
+public void yummy() {
+System.out.println("Yummy Cheese Cake");
+  }
+}
+~~~
+- 오버라이딩 관계
+  - CheeseCake의 yummy 메소드가 Cake의 yummy 메소드를 오버라이딩한 것이다.
+  - 오버라이딩 = 가린다고 생각하면 됨
+- 반환형, 메소드 이름, 매개변수 선언이 같을 때 
+- 부모 클래스의 참조변수로 인스턴스를 참조하더라도 오버라이딩 때문에 부모 클래스의 yummy 메소드를 가려버려서 자식 클래스의 yummy가 대신 호출된다.
+
+### 4.1. 오버라이딩 된 메소드 호출하는 방법
+~~~java
+class Cake {
+public void yummy() {
+System.out.println("Yummy Cake");
+  }
+}
+
+class CheeseCake extends Cake {
+public void yummy() {
+super.yummy();
+System.out.println("Yummy Cheese Cake");
+}
+
+public void tasty() {
+super.yummy();
+System.out.println("Yummy Tasty Cake");
+  }
+}
+~~~
+- 오버라이딩 된 메소드를 인스턴스 외부에서 호출하는 방법은 없다. 그러나 인스턴스 내부에서는 키워드 super를 이용해 호출 가능하다.
+
+### 4.2. 인스턴스 변수와 클래스 변수도 오버라이딩이 되는가?
+~~~java
+class Cake {
+public int size;
+....
+}
+
+class CheeseCake extends Cake {
+public int size;
+....
+}
+
+CheeseCake c1 = new CheeseCake();
+c1.size = ... // CheeseCake의 size에 접근
+
+Cake c2 = new CheeseCake();
+C2.size = ... // Cake의 size에 접근
+~~~
+- 인스턴스 변수는 오버라이딩 되지 않는다. 따라서 참조변수의 형에 따라 접근하는 멤버가 결정된다.
+- 하지만 이런 식으로 같게 변수 선언은 하지 않는 것이 좋다.
+
+
+
 
