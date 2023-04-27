@@ -252,10 +252,54 @@ public static void main(String[] args) {
 
 ## 2. Object 클래스와 final 선언 그리고 @Override
 
+### 2.1. 모든 클래스는 Object 클래스를 상속합니다.
+~~~java
+// System.out.println
+public void println(Object x) {
+. . .
+String s = x.toString();
+. . .
+}
+~~~
+- 모든 클래스는 Object를 상속하므로 위 메소드의 인자로 전달이 가능하다.
+- toString 메소드는 Object 클래스의 메소드였음을 알 수 있다.
 
+### 2.2. 프로그래머가 정의하는 toString은 메소드 오버라이딩
+- 그 클래스의 인스턴스가 가지고 있는 정보를 잘 표현할 수 있도록 디자인하는 것이 권고된다.
 
+### 2.3. 클래스와 메소드의 final 선언
+~~~java
+public final class MyLastCLS {...}
+→ MyLastCLS 클래스는 다른 클래스가 상속할 수 없음
 
+class Simple {
+  // 아래의 메소드는 다른 클래스에서 오버라이딩 할 수 없음
+  public final void func(int n) {...}
+}
+~~~
 
+### 2.4. @Override
+~~~java
+class ParentAdder {
+  public int add(int a, int b) {
+  return a + b;
+  }
+}
 
+class ChildAdder extends ParentAdder {
+@Override
+public double add(double a, double b) {
+  System.out.println("덧셈을 진행합니다.");
+  return a + b;
+  }
+}
+-> 오버라이딩이 아니라 상속으로 두 클래스에 걸쳐서 형성된 메소드 오버로딩이다. 따라서 컴파일 오류가 발생한다.
+~~~
+> 상위 클래스의 메소드를 오버라이딩 하는 것이 목적이라는 선언이다.
+
+> 오버라이딩을 하는 형태가 아니면 컴파일러가 오류 메시지 전달.
+- 매개변수 선언이 다르므로 오버라이딩 성립이 안된다.
+- 특별한 기능을 더해주지는 않지만, 컴파일러에게 오버라이딩이라는 정보를 전달함으로써 오버라이딩을 하고자 했지만 오버로딩이 되는 상황을 막을 수가 있다.
+  - 기능 제공이 아니라 안전성을 높이기 위한 문법이다.
 
 
