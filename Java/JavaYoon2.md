@@ -216,4 +216,46 @@ C2.size = ... // Cake의 size에 접근
 - A a = new B(); : 자식 클래스의 인스턴스를 생성해서 부모 클래스의 참조변수로 참조할 수 있다.
 - A 클래스의 fct()라는 메소드와 B클래스에서 메소드명,반환타입,매개변수 선언이 같다면 그게 오버라이딩이고, A의 참조변수 a가 참조하는 인스턴스는 B의 인스턴스이지만 a를 통해 접근할때는 A클래스 영역만 접근 가능하다. 하지만 a.fct()가 오버라이딩 되었기 때문에 a.fct(); 호출하면 B클래스의 fct()가 호출된다. 
 
+### 1.1. 단순한 인맥 관리 프로그램: 관리 대상이 둘!
+> 프로그램
+1. 안정적
+2. 확장성
+- 관리 대상이 둘이므로 두 개의 클래스가 정의된다.
+- 배열이 나눠지고 저장하는 방법도 나눠지고 참조하는 방법도 나눠지는 등 코드가 복잡해진다.
+- 이러한 클래스 디자인 기반에서 관리 대상이 넷, 다섯으로 늘어난다면? 늘어나는 수 만큼 코드 복잡해짐
+
+### 1.2. 상속 기반의 문제 해결: 두 클래스 상속 관계로 묶기
+![image](https://user-images.githubusercontent.com/106478906/234754834-77fa8920-5b69-40fe-bc9c-1d0334777312.png)
+
+- 연관된 일련의 클래스들에 대해 공통적인 규약(Friend)을 정의 및 적용할 수 있다.
+- CompFriend와 UnivFriend 클래스에 대해 Friend 클래스라는 규약을 정의하고 적용할 수 있다.
+
+### 1.3. 상속으로 묶은 결과
+~~~java
+public static void main(String[] args) {
+  Friend[] frns = new Friend[10]; // 배열이 하나니까
+  int cnt = 0;
+  frns[cnt++] = new UnivFriend("LEE", "Computer", "010-333-555"); // 저장하는 방법도 하나
+  frns[cnt++] = new UnivFriend("SEO", "Electronics", "010-222-444");
+  frns[cnt++] = new CompFriend("YOON", "R&D 1", "02-123-999");
+  frns[cnt++] = new CompFriend("PARK", "R&D 2", "02-321-777");
+  
+  // 모든 동창 및 동료의 정보 전체 출력
+  for(int i = 0; i < cnt; i++) { // 하나의 for문으로 전체 정보 출력 가능
+  frns[i].showInfo(); // 오버라이딩 한 메소드가 호출된다.
+  System.out.println();
+  }
+} 
+~~~
+> 이러한 클래스 디자인 기반에서 관리 대상이 넷, 다섯으로 늘어 난다고 해도, 인스턴스 관리와 관련해서 코드가 복잡해지지 않는다.
+- Friend 인스턴스를 저장할 수 있는 하나의 배열에 저장했음에도, 오버라이딩으로 인해 UnivFriend, CompFriend ...의 메소드가 호출될 수 있다. (확장성)
+
+## 2. Object 클래스와 final 선언 그리고 @Override
+
+
+
+
+
+
+
 
