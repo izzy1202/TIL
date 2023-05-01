@@ -180,8 +180,6 @@
             
  ![image](https://user-images.githubusercontent.com/106478906/230778369-210389a2-84ec-4f70-a2fc-e0d7e1e8e67f.png)
 
-# Python 프로그래밍Ⅰ
-<img width="1000" alt="화면 캡처 2023-04-14 142053" src="https://user-images.githubusercontent.com/106478906/231948447-d322e0c6-238c-44e7-a27d-5f8518ab5522.png">
 
 
         
