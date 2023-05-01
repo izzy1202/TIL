@@ -345,10 +345,29 @@ public double add(double a, double b) {
 ~~~
 
 ### 2.5. 인터페이스의 static 메소드
+~~~java
+interface Printable {
+  static void printLine(String str) {
+  System.out.println(str);
+  }
+default void print(String doc) {
+  printLine(doc); // 인터페이스의 static 메소드 호출
+  }
+}
+~~~
 - 인터페이스에도 static 메소드를 정의할 수 있다.
+  - default 메소드인 경우에는 인터페이스 내에서 호출 가능하다.
+  - 인터페이스명.메소드명 이렇게 어디서든 접근 가능하다.
 - 인터페이스의 static 메소드 호출 방법은 클래스의 static 메소드 호출 방법과 같다.
 
-
+### 2.6. 인터페이스 대상의 instanceof 연산
+~~~java
+  if(ca instanceof Cake) ....
+~~~
+- Cake는 클래스의 이름도, 인터페이스의 이름도 될 수 있다
+- ca가 참조하는 인스턴스를 Cake형 참조변수로 참조할 수 있으면 true 반환한다.
+= ca가 참조하는 인스턴스가 Cake를 직접 혹은 간접적으로 구현한 클래스의 인스턴스인 경우 true 반환한다.
+= 참조 변수 ca가 참조하는 인스턴스가 Cake 인스턴스나 Cake를 부모 클래스로 상속받는 인스턴스여야 한다.
 
 
 
