@@ -69,3 +69,18 @@
   - @RequestBody : BufferedReader
  
 ### 3.3. 스프링은 계속 발전중이다.
+
+# 4. JPA
+
+
+
+
+
+
+
+
+
+
+
+
+
