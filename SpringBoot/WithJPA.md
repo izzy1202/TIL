@@ -54,10 +54,18 @@
 - 리플렉션 : 한 클래스가 어떤 메소드,필드,어노테이션을 갖고 있는지 분석하는 기법으로, 런타임시 분석한다.
 
 # 3강 - MessageConverter
-###  스프링은 MessageConverter를 가지고 있다. 기본값은 현재 Json이다.
+### 3.1. 스프링은 MessageConverter를 가지고 있다. 기본값은 현재 Json이다.
 - Json : 중간 언어
 - MessageConverter : JAVA 프로그램에서 파이썬 프로그램에 object를 request할 때 파이썬이 바로 이해하기 힘드니까 JSON이라는 중간 언어로 변환하는 과정을 거치는데 MessageConverter가 그 역할을 한다.
 
-###  스프링은 BufferReader와 BufferedWriter를 쉽게 사용할 수 있다.
+### 3.2. 스프링은 BufferedReader와 BufferedWriter를 쉽게 사용할 수 있다.
+> 자바에서는 문자를 InputStream으로 읽어오는데, 이건 Byte로 받아온다.
+> 
+> InputStreamReader : 바이트를 문자로 바꿔주는데 배열로도 바꿀 수 있다. 그런데 이 경우 작은 데이터를 보내면 용량이 계속 낭비되므로 쓰지 않는다.
 
-###  스프링은 계속 발전중이다.
+- > 가변 길이의 데이터를 받아올 수 있는 BufferReader를 사용한다.
+- 스프링에서는 BufferedReader와 BufferedWriter를 어노테이션을 통해 사용할 수 있다.
+  - @ResponseBody : BufferedWriter
+  - @RequestBody : BufferedReader
+ 
+### 3.3. 스프링은 계속 발전중이다.
