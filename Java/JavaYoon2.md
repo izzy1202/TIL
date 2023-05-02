@@ -369,7 +369,162 @@ default void print(String doc) {
 = ca가 참조하는 인스턴스가 Cake를 직접 혹은 간접적으로 구현한 클래스의 인스턴스인 경우 true 반환한다.
 = 참조 변수 ca가 참조하는 인스턴스가 Cake 인스턴스나 Cake를 부모 클래스로 상속받는 인스턴스여야 한다.
 
+- 상속에서의 instanceof 연산과 의미가 같다.
 
+### 2.7. 인터페이스 대상 instanceof 연산의 예
+![KakaoTalk_20230502_090301512](https://user-images.githubusercontent.com/106478906/235552197-2e844045-e33a-4b2d-a065-56e65841c74d.jpg)
 
+- 비공식적으로 간접구현, 직접구현이라고 부른다.
+  - SimplePrinter가 Printable 인터페이스를 직접 구현하고, MultiPrinter가 Printable 인터페이스를 간접 구현한다.
+  - prn1 참조변수가 참조하는 인스턴스가 Printable 구현하냐? true(직접구현)
+  - prn2 참조변수가 참조하는 인스턴스가 Printable 구현하냐? true(간접구현)
+
+### 2.8. 인터페이스의 또 다른 용도: Marker 인터페이스
+![KakaoTalk_20230502_090752063](https://user-images.githubusercontent.com/106478906/235552631-52a54f15-2a90-4762-b6d9-1bb856fe7b2f.jpg)
+
+- 클래스에 특정 표시를 해 두기 위한 목적으로 정의된 인터페이스를 마커 인터페이스라 한다. 
+- 마커 인터페이스에는구현해야 할 메소드가 없는 경우가 흔하다.
+
+### 2.8. 추상 클래스
+~~~java
+public abstract class House { // 추상 클래스
+  public void methodOne() {
+    System.out.println("method one");
+  }
+  public abstract void methodTwo(); // 추상 메소드
+}
+~~~
+- abstract로 추상 클래스임을 명시해준다.
+> 하나 이상의 추상 메소드를 지니는 클래스를 가리켜 추상 클래스라 한다. 
+
+> 추상 클래스를 대상으로는 인스턴스 생성이 불가능하다. 물론 참조변수 선언은 가능하다.
+- 인스턴스화 되는 게 아니라 상위 클래스로서 하위 클래스에서 추상 메소드를 구현해서 사용하는 용도로 만들어졌다.
+
+#### 2.8.1. 인터페이스와 추상 클래스의 차이점
+- 인터페이스는 인스턴스 변수, 메소드를 안에 둘 수 없고 추상 클래스는 가능하다.
+
+# Chapter 18
+
+## 1. 자바 예외처리의 기본
+> 예외 : 프로그램 일반적 원칙에서 벗어난 사용자의 실수
+
+### 1.1. 자바에서 말하는 예외
+
+#### 1.1.1. 예외(Exception)
+- ‘예외적인 상황’을 줄여서 ‘예외’라 한다.
+- 단순한 문법 오류가 아닌 실행 중간에 발생하는 ‘정상적이지 않은 상황’을 뜻한다.(기대하지 못한 상황)
+
+#### 1.1.2. 예외처리
+- 예외 상황에 대한 처리를 의미한다. 
+- 자바는 예외처리 메커니즘을 제공한다.
+
+### 1.2. 예외 상황의 예
+![KakaoTalk_20230502_093232447](https://user-images.githubusercontent.com/106478906/235554915-c3554d4d-e95c-4450-9d2d-eabce1a4eaf0.jpg)
+- 분모에 0이 들어가서 예외가 발생했고 예외 처리를 해주지 않았기 때문에 JVM이 프로그램을 종료시켰다.
+
+### 1.3. 예외 상황의 또 다른 예
+![KakaoTalk_20230502_093515817](https://user-images.githubusercontent.com/106478906/235555173-20d13605-203f-44e5-a52c-ee37dde14ec4.jpg)
+- 정수가 아닌 문자를 입력해서 예외가 발생했고 예외 처리를 해주지 않았기 때문에 JVM이 프로그램을 종료시켰다.
+
+### 1.4. 예외 상황을 알리기 위한 클래스
+> 과거에는 if else로 예외 처리를 했다.
+- 예외 처리 코드가 다른 코드와 구분되지 않는 문제가 발생
+-> catch 등장
+
+> java.lang.ArithmeticException
+→ 수학 연산에서의 오류 상황을 의미하는 예외 클래스
+> java.util.InputMismatchException
+→ 클래스 Scanner를 통한 값의 입력에서의 오류 상황을 의미하는 예외 클래스
+
+### 1.5. 예외의 처리를 위한 try ~ catch
+~~~java
+try {
+  ...관찰 영역...
+}
+catch(ArithmeticException e) {
+  ...처리 영역...
+}
+~~~
+- 예외의 처리를 위한 코드를 별도로 구분하기 위해 디자인된 예외처리 메커니즘이 try ~ catch 이다.
+
+### 1.6. try ~ catch의 예
+![image](https://user-images.githubusercontent.com/106478906/235557649-48c315be-b78a-4884-8269-9ab567fb17fb.png)
+
+### 1.7. 예외 발생 이후의 실행 흐름
+~~~java
+try {
+  1. ...
+  2. 예외 발생 지점
+  3. ...
+}
+catch(Exception e) {
+  ...
+}
+4. 예외 처리 이후 실행 지점
+~~~
+
+### 1.8. try로 감싸야 할 영역의 결정
+![image](https://user-images.githubusercontent.com/106478906/235558073-d9f245fc-82ea-4ed4-a2d2-4a059af0af95.png)
+
+> try: 예외가 발생할 수 있는 영역을 묶기 위한 용도도 있지만, 하나의 작업을 묶는 용도로도 사용된다.
+
+### 1.9. 둘 이상의 예외 처리를 위한 구성1
+![image](https://user-images.githubusercontent.com/106478906/235558200-40ada762-5fbf-4b25-aa04-f90f83d1d237.png)
+
+- 위의 catch 다음에 아래 catch가 처리된다는 것을 알아두어야 한다.
+### 1.10. 둘 이상의 예외 처리를 위한 구성2
+![image](https://user-images.githubusercontent.com/106478906/235558267-06071369-eb46-4119-802a-739e41034701.png)
+
+### 1.11. Throwable 클래스
+- cf. 모든 예외처리 클래스를 알 필요 없고 필요한 부분을 상황따라 공부하는 것이 좋다.
+> java.lang.Throwable 클래스
+- 모든 예외 클래스의 최상위 클래스: 물론 Throwable도 Object를 상속한다.
+
+> Throwable 클래스의 메소드 둘
+
+- public String getMessage() : 예외의 원인을 담고 있는 문자열을 반환
+- public void printStackTrace() : 예외가 발생한 위치와 호출된 메소드의 정보를 출력
+  - 이거도 원인 문자열 같이 출력해주기 때문에 보통 이 메소드 사용
+  
+### 1.12. 예외의 (책임)전달
+![image](https://user-images.githubusercontent.com/106478906/235560721-359ee8e8-dd9d-4035-8a2d-4a95d93ecf47.png)
+> 예외 발생 지점에서 예외를 처리하지 않으면 해당메소드를 호출한 영역으로 예외가 전달된다.
+- 예외 처리를 넘기고 넘겨서 JVM한테까지 가면 JVM이 printStachTrace를 호출해서 해결한다.(적절한 방법은 아님)
+![KakaoTalk_20230502_103819986](https://user-images.githubusercontent.com/106478906/235561481-81b6f7fc-04c3-4da6-8a09-0b26e1e522f7.jpg)
+
+-  printStachTrace 에서 나오는 예외처리 위치들을 보고 예외를 처리하는 것도 괜찮은 방법이다.
+
+### 1.13. ArrayIndexOutOfBoundsException
+
+![image](https://user-images.githubusercontent.com/106478906/235561747-ce101104-5a9f-4261-92fc-e41c5b7b115b.png)
+
+### 1.14. ClassCastException
+~~~java
+class Board { }
+class PBoard extends Board { }
+
+class ClassCast {
+public static void main(String[] args) {
+    Board pbd1 = new PBoard(); // 부모 클래스의 참조변수로 자식 클래스의 인스턴스를 참조
+    PBoard pbd2 = (PBoard)pbd1; // 강제 형변환을 했기 때문에 OK!
+
+    Board ebd1 = new Board();
+    PBoard ebd2 = (PBoard)ebd1; // Exception!
+  }
+)
+~~~
+> 자식 클래스의 참조변수로 부모 클래스의 인스턴스를 참조하는 것은 허용되지 않기 때문에 ClassCastException 발생한다.
+
+### 1.15. NullPointerException
+~~~java
+class NullPointer {
+  public static void main(String[] args) {
+  String str = null;
+  System.out.println(str); // null 출력
+  int len = str.length(); //str이라는 참조변수가 참조하는 인스턴스가 없는데 길이를 반환할 수 없기 때문에 Exception!
+  }
+}
+~~~
+> null : 아무것도 가리키지 않는다.
 
 
