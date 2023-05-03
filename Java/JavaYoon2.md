@@ -527,4 +527,158 @@ class NullPointer {
 ~~~
 > null : 아무것도 가리키지 않는다.
 
+## 2. 예외처리에 대한 나머지 설명들 (1)
+
+### 2.1. 예외 클래스의 구분
+1. Error 클래스를 상속하는 예외 클래스
+2. Exception 클래스를 상속하는 예외 클래스
+3. RuntimeException 클래스를 상속하는 예외 클래스
+→ RuntimeException 클래스는 Exception 클래스를 상속한다.
+
+### 2.2. Error 클래스를 상속하는 예외 클래스들의 특성
+- Error 클래스를 상속하는 예외 클래스의 예외 상황은 시스템 오류 수준의 예외 상황으로 프로그램 내에서 처리 할수 있는 수준의 예외가 아니다.
+- 그냥 이런게 있다고 알아두기
+
+### 2.3. RuntimeException 클래스를 상속하는 예외 클래스들의 특성
+- 코드 오류로 발생하는 경우가 대부분이다. 따라서 이 유형의 예외 발생시 코드의 수정을 고려해야 한다.
+- 보는 관점에 따라 에러가 될 수도, 예외가 될 수도 있다.(에러에 가깝다)
+- ex) ArithmeticException
+      ClassCastException
+      IndexOutOfBoundsException
+      NegativeArraySizeException 배열 생성시 길이를 음수로 지정하는 예외의 발생
+      NullPointerException
+      ArrayStoreException 배열에 적절치 않은 인스턴스를 저장하는 예외의 발생
+
+### 2.4. Exception 클래스를 상속하는 예외 클래스들의 특성
+- 코드의 문법적 오류가 아닌, 프로그램 실행 과정에서 발생하는 예외적 상황을 표현하기 위한 클래스들이다. 따라서 예외의 처리를 어떻게 할 것인지 반드시 명시해 주어야 한다.
+- ex) java.io.IOException 입출력 관련 예외 상황을 표현하는 예외 클래스
+
+### 2.5. Exception을 상속하는 예외의 예
+~~~java
+public static void main(String[] args) {
+  Path file = Paths.get("C:\\javastudy\\Simple.txt");
+  BufferedWriter writer = null;
+  
+  try {
+  writer = Files.newBufferedWriter(file); // IOException 발생 가능
+  writer.write('A’); // IOException 발생 가능
+  writer.write('Z’); // IOException 발생 가능
+  
+    if(writer != null)
+    writer.close(); // IOException 발생 가능
+  }
+  
+  catch(IOException e) {
+  e.printStackTrace();
+  }
+}
+~~~
+- Exception을 상속하는 예외는 반드시 처리를 해야 한다. 그렇지 않으면 컴파일 오류로 이어진다.
+
+### 2.6. 처리하거나 아니면 넘기거나
+~~~java
+public static void main(String[] args) {
+  try {
+      md1();
+  }
+  catch(IOException e) {
+      e.printStackTrace();
+  }
+  }
+  public static void md1() throws IOException { // IOException 예외 넘긴다고 명시!
+    md2();
+  }
+  public static void md2() throws IOException { // IOException 예외 넘긴다고 명시!
+    Path file = Paths.get("C:\\javastudy\\Simple.txt");
+    BufferedWriter writer = null;
+    writer = Files.newBufferedWriter(file); // IOException 발생 가능
+    writer.write('A'); // IOException 발생 가능
+    writer.write('Z'); // IOException 발생 가능
+    if(writer != null)
+    writer.close(); // IOException 발생 가능
+}
+~~~
+- 메소드의 throws절 선언을 통해 예외의 처리를 넘길 수 있다.
+
+### 2.7. 둘 이상의 예외 넘김에 대한 선언
+~~~java
+public void simpleWrite() throws IOException, IndexOutofBoundsException {
+....
+}
+~~~
+
+## 3. 예외처리에 대한 나머지 설명들 (2)
+### 3.1. 프로그래머가 정의하는 예외 클래스
+~~~java
+class MyExceptionClass {
+  public static void main(String[] args) {
+  System.out.print("나이 입력: ");
+  
+  try {
+  int age = readAge();
+  System.out.printf("입력된 나이: %d \n", age);
+  }
+  catch(ReadAgeException e) {
+    System.out.println(e.getMessage());
+  }
+}
+public static int readAge() throws ReadAgeException {
+  Scanner kb = new Scanner(System.in);
+  int age = kb.nextInt();
+  
+  if(age < 0)
+    throw new ReadAgeException(); // 예외의 발생
+    return age;
+  }
+}
+
+class ReadAgeException extends Exception {
+. . .
+}
+~~~
+
+### 3.2. 잘못된 catch 구문의 구성
+![image](https://user-images.githubusercontent.com/106478906/235838129-bf238f74-d6de-4e39-8b60-a72e2b9fdaf0.png)
+- catch(FirstException e) {...}에서 예외를 다 잡아버려서 아래까지 내려오지 않는다.
+- catch(ThirdException e) {...} 가 위로 오고 catch(FirstException e) {...}가 아래로 와야 오류가 나지 않는다.
+
+### 3.3. finally
+- try 구문에 들어오면 finally 구문은 무조건 실행된다.
+
+### 3.4. finally 구문의 사용의 예
+![image](https://user-images.githubusercontent.com/106478906/235839414-89765945-c1e7-49f0-8cb6-c078d0d474a7.png)
+
+- file을 한번 열었으면 꼭 close메소드로 닫아주어야 한다.
+  - 이처럼 실행의 흐름이 try 구문 안에 들어왔을 때 반드시 실행해야 하는 문장을 finally 구문에 둘 수 있다. 
+하지만 이렇게 finally 구문에 넣으면 또 IOException이 발생해서 try catch문이 finally 구문 안에 들어가게 된다. 이보다 멋진 대안이 등장했다!
+
+### 3.5. try-with-resources
+![image](https://user-images.githubusercontent.com/106478906/235840219-2be8205b-9106-46f9-bd31-7dca64cefe9b.png)
+
+- 파일(자원)들은 기본적으로 열고 닫는 과정이 있다.
+- 리소스를 처리하기 위한 코드를 try와 합쳐놨다는 뜻.
+
+# Chapter 19
+
+## 1. 자바 가상머신의 메모리 모델
+
+### 1.1. 운영체제 입장에서 자바 가상머신
+- 운영체제의 관점에서는 가상머신도 그냥 프로그램의 하나
+- 운영체제가 일반 프로그램에게 4G의 메모리 공간을 할당해준다면, JVM에게도 4G 메모리 공간을 할당해준다. 
+- 자바 프로그램이 두 개 실행되면, 가상머신도 두 개가 실행된다. 이는 메모장을 두 번 띄우면 두 개의 메모장 프로그램이 실행되는 이치와 같다.
+
+### 1.2. 자바 가상머신의 메모리 모델
+- 메모리 공간 활용의 효율성을 높이기 위해 메모리 공간을 세 개의 영역으로 구분하였다.
+![image](https://user-images.githubusercontent.com/106478906/235841086-e09ce696-80a3-44fd-a756-d3ebc79b6fe7.png)
+
+> 메소드 영역 (Method Area)
+- 메소드의 바이트코드, static 변수
+> 스택 영역 (Stack Area)
+- 지역변수, 매개변수
+> 힙 영역 (Heap Area)
+- 인스턴스
+
+
+
+
 
