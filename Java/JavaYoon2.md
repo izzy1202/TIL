@@ -672,12 +672,30 @@ class ReadAgeException extends Exception {
 ![image](https://user-images.githubusercontent.com/106478906/235841086-e09ce696-80a3-44fd-a756-d3ebc79b6fe7.png)
 
 > 메소드 영역 (Method Area)
-- 메소드의 바이트코드, static 변수
+- (메소드의) 바이트코드, static 변수
+  - 한번 메소드 영역에 할당되면 프로그램이 종료될 때까지 지우지 않는 특성을 가졌다.
+  
 > 스택 영역 (Stack Area)
 - 지역변수, 매개변수
+
 > 힙 영역 (Heap Area)
 - 인스턴스
 
+### 1.3. 메소드 영역
+![image](https://user-images.githubusercontent.com/106478906/235842232-49352559-fa73-41a7-bebf-763344725c57.png)
+- 바이트코드와 static 변수가 할당되는 메모리 공간
+- 이 영역에 저장된 내용은 프로그램 종료 시 소멸된다.
+
+### 1.4. 스택 영역
+![image](https://user-images.githubusercontent.com/106478906/235842646-35be5bb6-e4ae-4119-8654-b59c31e7f94a.png)
+- 임시 저장
+- 지역변수 매개변수 할당되는 영역
+- 이 영역에 저장된 변수는 해당 변수가 선언된 메소드 종료 시 소멸된다.
+
+### 1.5. 힙 영역
+
+- 인스턴스가 저장되는 영역
+- 가비지 컬렉션의 대상이 되는 영역이다.
 
 
 
