@@ -156,6 +156,7 @@
 - static(정적인) 자원 응답
 
 > 톰캣
+
 ![image](https://user-images.githubusercontent.com/106478906/236217590-4a8dda1b-b99f-48b4-89d9-0c9827ea68f2.png)
 
 - 아파치 : 웹서버. 요청한 파일을 응답해준다.
@@ -168,6 +169,7 @@
 ## 10. 서블릿 객체의 생명주기
 ![image](https://user-images.githubusercontent.com/106478906/236223467-685aa018-9571-4c29-931f-4214f6cda61c.png)
 - 서블릿 컨테이너 : 톰캣
+
 > [URL과 URI](https://www.charlezz.com/?p=44767)
 - URL : 자원에 접근(Location)
   - ex) http://naver.com/a.png
@@ -221,6 +223,37 @@
 
 ### 11.9 보안
 - 이상한 애들 들어오면 쫓아낸다.
-  
-  
+
+> 여기에서 Servlet/JSP 매핑시(web.xml에 직접 매핑 or @WebServlet 어노테이션 사용)에 모든 클래스에 매핑을 적용시키기에는 코드가 너무 복잡해지기 때문에 Front Controller패턴을 이용한다.
+
+# 12강
+## 12.1 Front Controller 패턴
+> 최초 앞단에서 request 요청을 받아서 필요한 클래스에 넘겨준다.
+- web.xml에 다 정의하기 힘들기 때문이다.
+- 이때 새로운 요청이 생기기 때문에 request와 response가 새롭게 new될 수 있다. 그래서 아래의 RequestDispatcher가 필요하다.
+
+![image](https://user-images.githubusercontent.com/106478906/236378682-6a922937-481c-40eb-a287-b02409f41496.png)
+
+- 특정 주소(ex. .do)로 request가 오면 Front Controller로 보내라는 코드를 web.xml에 써놓는다.
+  - Front Controller가 내부에서 자원을 request한다.
+  - response가 요청자에게 가는게 아니라 Front Controller에게 간다.
+  - 최초의 request / response가 사라지는 게 아니라 그 위에 덮어 씌워진다.
+  -> RequestDispatcher
+
+## 12.2. RequestDispatcher 
+> 필요한 클래스 요청이 도달했을 때 FrontController에 도착한 request와 response를 그대로 유지시켜준다.
+
+![image](https://user-images.githubusercontent.com/106478906/236377905-36017aa9-a70f-48ac-a386-fadf80238928.png)
+- A라는 사람이 a.jsp를 요청하면 a.html을 응답해준다.
+  - a.html에 대한 요청과 응답이 만들어진다.
+- a.html에서 새로운 버튼을 클릭했을 때 b.jsp로 새로 요청이 들어오고, b.html을 응답한다.
+- RequestDispatcher를 이용하면 기존의 request를 재사용하기 때문에 a.html의 request를 b.html에 이어서 가져갈 수 있다.
+
+## 12.3. DispatchServlet
+> 스프링에는 DispatchServlet이 있기 때문에 Front Controller 패턴을 직접 짜거나 RequestDispatcher를 직접 구현할 필요가 없다.
+>
+> Front Controller 패턴 + RequestDispatcher
+- DispatchServlet이 자동 생성되어질 때 수많은 객체가 생성(IoC)된다. 보통 필터들이다. 해당 필터들은 내가 직접 등록할 수도 있고 기본적으로 필요한 필터들을 자동 등록된다.
+
+
 
