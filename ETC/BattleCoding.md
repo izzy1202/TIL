@@ -82,28 +82,20 @@ if-else
 - 기능 리스트 정해서 업무 분담
 
 > 개발자 포폴 참고사이트
-- 부트캠프 우수 포트폴리오&교육과정
+>
+>부트캠프 우수 포트폴리오&교육과정
 
 - [항해99](https://hanghae99.spartacodingclub.kr/v2/exhibitions)
-
 - [DevFoliOh](https://devfolio.kr/)
-
 - [f-lab](https://github.com/f-lab-edu)
-
 - [코드스쿼드](https://www.codesquad.kr/masters)
-
 - [공공데이터 활용사례](https://www.data.go.kr/tcs/puc/selectPublicUseCaseListView.do)
-
 - [위코드](https://wecode.co.kr/curriculum-time)
-
 - [코드스테이츠](https://www.codestates.com/course/backend-engineering)
-
 - [제로베이스 1](https://zerobaseschool.notion.site/59c6bb4c293d441699bc7da913ff0f5c)
 - [제로베이스 2](https://zero-base.co.kr/category_dev_camp/school_BE)
-
 - [바닐라코딩](https://www.vanillacoding.co/camp-black)
-
-- [프로그래머스 기술블로그 모음0(https://prgms.tistory.com/183)
+- [프로그래머스 기술블로그 모음](https://prgms.tistory.com/183)
 
 # 5/6 네 번째 모임
 - 스프링부트 팀프로젝트 진행 
