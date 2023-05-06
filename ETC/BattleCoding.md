@@ -1,9 +1,9 @@
 > 2023/04/15 ~
 > 배틀코딩 1기 참여 기록
 > 
-> 오프라인 모임 : 토요일 9:00 ~ 16:00
+> 오프라인 모임 : 토요일 / 일요일 9:00 ~ 18:00
 > 
-> 온라인 모임 : 주중 21:00 ~ 21:30
+> 온라인 줌 모임 : 주중 21:00 ~ 21:30
 ---
 
 # 4/15 첫 번째 모임
@@ -44,3 +44,67 @@
 - 학습에 챗gpt를 적극 활용해라.
   - ex) 스프링부트에서 JPA로 페이징 처리하는 소스 보여줘
   - 코드 보내고 위 소스 설명해줘
+  
+# 4/29 세 번째 모임
+> 알고리즘 테스트
+1. 프로그래밍의 설계를 할 수 있는가 (객체,배열)
+기초 내부 데이터 설계 : hashmap(키와 밸류), arraylist, set
+
+2. 반복문(for,while-if)
+for - 반복의 횟수 지정되어있을때
+while - 반복의 횟수가 지정되어있지 않을떄(반드시 if로 빠져나오는 문을 만들어야함)
+
+2-1. 비교문 
+if-else
+
+3. 최종 답안 데이터
+
+- 다익스트라, 그리디 : 문제 유형을 보고 기법이 들어간 것이라 초보자에게는 맞지 않음(실무에서는 쓰이지 않기 때문에 비추)
+- level 0,1 : 기초 문법 
+  
+> 게시판 프로젝트
+- 댓글(1:N) , 계층형(답변형) : 셀프 조인 /  재귀
+- N:M(ex) 쇼핑몰 - > 상품, 회원 -> 주문/결제, 장바구니(다대다-outer join)
+- 로그인/ 회원가입 : 어떤 사이트든 들어가므로 중요. 인증, http 통신보안, 쿠키/세션, 권한관리, 접근제어,jwt토큰인증,단방향암호화, 양방향암호화,대칭키/비대칭키 
+=> 기초 로그인에서 세션방식과 jwt 인증 방식만 해봐도 도움이 된다 
+  
+> 뼈대 지식과 확장 지식
+- 스프링 : mvc 구조, json, 타임리프(restcontroller )
+스프링의 기본 구조가 서블릿컨테이너가 있고 스프링 컨테이너, 뷰 리졸버,디스패처서블릿(핸들러매핑을 결정하고 등등)
+* 컨테이너 : 어떤 행위를 가지고 있는 주체(메모리 덩어리)
+  - 메세지 컨버터 
+
+=> 이런 스프링 뼈대 기반 지식 기본적으로 공부가 필요하다.
+
+> git
+로컬에서 받아서 .git 파일에 초기 프로젝트 파일(이니셜 소스) 만들어서 푸시하고 팀원들이 다시 풀 받아서 하기 
+- 이니셜 소스를 뭐로 할지 정해서 하기 
+- 기능 리스트 정해서 업무 분담
+
+> 개발자 포폴 참고사이트
+- 부트캠프 우수 포트폴리오&교육과정
+
+- [항해99](https://hanghae99.spartacodingclub.kr/v2/exhibitions)
+
+- [DevFoliOh](https://devfolio.kr/)
+
+- [f-lab](https://github.com/f-lab-edu)
+
+- [코드스쿼드](https://www.codesquad.kr/masters)
+
+- [공공데이터 활용사례](https://www.data.go.kr/tcs/puc/selectPublicUseCaseListView.do)
+
+- [위코드](https://wecode.co.kr/curriculum-time)
+
+- [코드스테이츠](https://www.codestates.com/course/backend-engineering)
+
+- [제로베이스 1](https://zerobaseschool.notion.site/59c6bb4c293d441699bc7da913ff0f5c)
+- [제로베이스 2](https://zero-base.co.kr/category_dev_camp/school_BE)
+
+- [바닐라코딩](https://www.vanillacoding.co/camp-black)
+
+- [프로그래머스 기술블로그 모음0(https://prgms.tistory.com/183)
+
+# 5/6 네 번째 모임
+- 스프링부트 팀프로젝트 진행 
+  - 리뷰 띄우기, 로그인/로그아웃
