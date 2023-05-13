@@ -723,7 +723,7 @@ class ReadAgeException extends Exception {
 - System.runFinalization(); : gc 실행해달라고 부탁
 
 ### 2.2. 인스턴스의 비교: equals 메소드
-
+- '==' : 참조 대상을 비교
 - 인스턴스의 내용 비교를 위한 기능을 equals 메소드에 담아 정의한다.
 - equals는 Object 클래스의 메소드이다.
 
@@ -735,22 +735,140 @@ class ReadAgeException extends Exception {
 - 클래스 정의 시, clone 메소드의 호출을 허용하려면 Cloneable 인터페이스를 구현해야 한다.
 - Cloneable 인터페이스는 구현해야 할 추상 메소드가 없는 마커 인터페이스이다.
 
+![image](https://github.com/izzy1202/TIL/assets/106478906/92a1d2df-2dcc-42f8-8d65-29fb90108a0d)
 
+### 2.5. Shallow Copy(얕은 복사)
+- 깊이 있게 참조값까지 복사하는 게 아니라 얕게 복사
 
+### 2.6. Deep Copy(깊은 복사)
+- 복사하고 바로 반환이 아니라 참조값까지 clone메소드로 복사
+![image](https://github.com/izzy1202/TIL/assets/106478906/85081f21-30e1-4f73-8f83-0f4b0ddb3c9c)
 
+### 2.7. 
+~~~java
+class Point implements Cloneable {
+  ....
+  @Override
+  public Point clone() throws CloneNotSupportedException {
+  return (Point)(super.clone());
+  }
+}
 
+Point org = new Point(1, 2);
+Point cpy = org.clone(); // 형 변환 필요 없음
+~~~
+- 원래라면 해야하는데 이제 형변환 안해도 됨
 
+# Chapter 20
 
+## 1. 래퍼 클래스 (Wrapper 클래스) 
 
+### 1.1. 기본 자료형의 값을 감싸는 래퍼 클래스
+- 값을 인스턴스화 시켜서 인스턴스를 호출하면 값을 전달한다.
+~~~java
+class UseWrapperClass {
+  public static void showData(Object obj) { //인스턴스를 요구하는 메소드 이 메소드를 통해서 정수나 실수를 출력하려면 해당 값을인스턴스화 해야 한다.
+  System.out.println(obj);
+}
+  public static void main(String[] args) {
+    Integer iInst = new Integer(3);
+    showData(iInst);
+    showData(new Double(7.15));
+  }
+}
+~~~
 
+### 1.2. 래퍼 클래스의 종류와 생성자
+![image](https://github.com/izzy1202/TIL/assets/106478906/32abfe7c-7fff-4d3e-bc6b-34a0ac05abbd)
+- Double은 float까지 커버 가능하기 때문에 public Double(float value)의 형태는 없다.
 
+### 1.3. 래퍼 클래스의 두 가지 기능
+![image](https://github.com/izzy1202/TIL/assets/106478906/02fa9a0a-0b55-4c96-9d62-3992af3de845)
 
+- Boxing : 기본 자료형 값을 인스턴스화 하는 것
+- Unboxing : 인스턴스에 저장된 값을 꺼내는 것
+  - 꺼냈다고 사라지는 게 아님! 여러개 꺼낼 수 있음
 
+### 1.4. 박싱과 언박싱 예
+~~~java
+public static void main(String[] args) {
+  Integer iObj = new Integer(10); // 박싱
+  Double dObj = new Double(3.14); // 박싱
+  . . . .
 
+  int num1 = iObj.intValue(); // 언박싱
+  double num2 = dObj.doubleValue(); // 언박싱
+  . . . .
 
+  // 래퍼 인스턴스 값의 증가 방법
+  iObj = new Integer(iObj.intValue() + 10);
+  dObj = new Double(dObj.doubleValue() + 1.2);
+  . . . .
+}
+~~~
+- 박싱은 인스턴스 생성을 통해 이뤄지고, 언박싱은 메소드 호출을 통해 이뤄진다.
+- 래퍼 클래스의 인스턴스는 immutable 인스턴스(내부 값을 수정할 수 없는)이다.
+  - String 인스턴스 : immutable 인스턴스
+- 연산을 하려면 값을 꺼내서 연산하고 그 값으로 새로운 인스턴스를 만들어야 한다.(효율적이라고는 못함)
 
+### 1.5. 언박싱 메소드의 이름
+![image](https://github.com/izzy1202/TIL/assets/106478906/746804f6-fa59-4b52-97ff-033a6f2744e1)
 
-
-
+### 1.6. 오토 박싱과 오토 언박싱
+~~~java
+class AutoBoxingUnboxing {
+  public static void main(String[] args) {
+  Integer iObj = 10; // 오토 박싱 진행 -> 인스턴스가 와야 할 위치에 기본 자료형 값이 오면 오토 박싱 진행
+  Double dObj = 3.14; // 오토 박싱 진행
+  . . . .
   
+  int num1 = iObj; // 오토 언박싱 진행 -> 기본 자료형 값이 와야 할 위치에 인스턴스가 오면 오토 언박싱 진행
+  double num2 = dObj; // 오토 언박싱 진행
+  . . . .
+  }
+}
+~~~
   
+### 1.7. 오토 박싱, 오토 언박싱의 또 다른 예
+~~~java
+public static void main(String[] args) {
+Integer num = 10;
+num++; // new Integer(num.intValue() + 1); -> 오토 박싱과 오토 언박싱 동시에 진행!
+. . . .
+num += 3; // new Integer(num.intValue() + 3); -> 오토 박싱과 오토 언박싱 동시에 진행!
+. . . .
+int r = num + 5; // 오토 언박싱 진행
+Integer rObj = num - 5; // 오토 언박싱 진행
+. . . .
+}
+~~~
+- but, 실제 프로그래머들은 num++; 보다 명확한 오른쪽 코드를 쓰는 경우도 있다.
+
+### 1.8. Number 클래스
+- java.lang.Number : 모든 래퍼 클래스가 상속하는 클래스
+- java.lang.Number에 정의된 추상 메소드들
+> public abstract int intValue()
+> 
+> public abstract long longValue()
+> 
+> public abstract double doubleValue()
+→ 즉 래퍼 인스턴스에 저장된 값을 원하는 형의 기본 자료형 값으로 반환할 수 있다.
+
+### 1.9. 래퍼 클래스의 다양한 static 메소드들
+![image](https://github.com/izzy1202/TIL/assets/106478906/3c4f4b3f-68af-4b77-9556-bb70d7ba5bbf)
+
+# 2. BigInteger 클래스와 BigDecimal 클래스
+- BigInteger : 가장 큰 정수형인 Long보다 큰 정수를 표현할 때
+- BigDecimal : 오차를 발생시키지 않는 실수 연산할 때(일반 실수형보다 느리기 때문에 무조건적 사용 지양)
+
+## 2.1. 매우 큰 정수 표현 위한 java.math.BigInteger 클래스
+- BigInteger 클래스를 기반으로 만드는 인스턴스는 immutable 인스턴스이다.
+- 문자열로 표현해야 BigInteger 클래스로 인식된다.
+
+
+
+
+
+
+
+
