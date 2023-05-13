@@ -1,7 +1,7 @@
 # <윤성우의 열혈 Java> 강의 내용 정리
 >[강의 링크](https://cafe.naver.com/cstudyjava/135782?boardType=L)
 
-> Chapter 14 ~ 
+> Chapter 14 ~ Chapter 20
 > 
 >모든 내용을 정리하지는 않음
 
@@ -857,18 +857,46 @@ Integer rObj = num - 5; // 오토 언박싱 진행
 ### 1.9. 래퍼 클래스의 다양한 static 메소드들
 ![image](https://github.com/izzy1202/TIL/assets/106478906/3c4f4b3f-68af-4b77-9556-bb70d7ba5bbf)
 
-# 2. BigInteger 클래스와 BigDecimal 클래스
+## 2. BigInteger 클래스와 BigDecimal 클래스
 - BigInteger : 가장 큰 정수형인 Long보다 큰 정수를 표현할 때
 - BigDecimal : 오차를 발생시키지 않는 실수 연산할 때(일반 실수형보다 느리기 때문에 무조건적 사용 지양)
 
-## 2.1. 매우 큰 정수 표현 위한 java.math.BigInteger 클래스
+### 2.1. 매우 큰 정수 표현 위한 java.math.BigInteger 클래스
 - BigInteger 클래스를 기반으로 만드는 인스턴스는 immutable 인스턴스이다.
 - 문자열로 표현해야 BigInteger 클래스로 인식된다.
 
+### 2.2. 오차 없는 실수 표현 위한 BigDecimal 클래스
+- 문자열로 표현해야 BigDecimal 클래스로 인식된다.
 
+## 3. Math 클래스와 난수의 생성, 그리고 문자열 토큰(Token)의 구분
 
+### 3.1. 수학 관련 연산 기능을 제공하는 Math 클래스
 
+### 3.2. 난수의 생성
+- 컴퓨터가 만들어내는 난수 : 가짜 난수(seed에 따른 알고리즘)
+![image](https://github.com/izzy1202/TIL/assets/106478906/09bc6a3c-f20c-4dd7-aa25-0a469279b353)
 
+### 3.3. 난수 생성의 예
+![image](https://github.com/izzy1202/TIL/assets/106478906/47674452-b555-42f3-964f-edfda068209c)
+- System.currentTimeMillis() : 현재 시간출력, 계속 달라짐
+
+### 3.4. 문자열의 토큰 구분
+- 구분자로 토큰을 구분한다.
+- "PM:08:45" 이 문자열의 구분자가 :일 경우 토큰은 세 가지 ( PM 08 45 )
+~~~java
+StringTokenizer st = new StringTokenizer("PM:08:45", ":");
+public boolean hasMoreTokens() // 반환할 토큰이 남아 있는가?
+public String nextToken() // 다음 토큰을 반환
+~~~
+![image](https://github.com/izzy1202/TIL/assets/106478906/6d9efcf3-a6e2-46a0-98d3-cd38d3df769d)
+- 공백도 구분자에 포함된다(공백을 구분자에 넣으면 공백 없이 토큰값만 출력된다)
+
+## 4. Arrays 클래스
+
+### 4.1. Arrays 클래스의 배열 복사 메소드
+- 복사 : 복사할 공간이 미리 만들어져있다.
+- 복제 : 복제하면서 배열이 생성된다.
+![image](https://github.com/izzy1202/TIL/assets/106478906/8c7c29ae-dbea-4b70-ace2-7d7862d63f10)
 
 
 
