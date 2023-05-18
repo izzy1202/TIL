@@ -894,9 +894,48 @@ public String nextToken() // 다음 토큰을 반환
 ## 4. Arrays 클래스
 
 ### 4.1. Arrays 클래스의 배열 복사 메소드
-- 복사 : 복사할 공간이 미리 만들어져있다.
-- 복제 : 복제하면서 배열이 생성된다.
+- 복사 : 복사할 공간이 미리 만들어져있다.(arraycopy)
+- 복제 : 복제하면서 배열이 생성된다.(copyof)
+
+#### 4.1.1. copyOf 메소드 호출의 예
 ![image](https://github.com/izzy1202/TIL/assets/106478906/8c7c29ae-dbea-4b70-ace2-7d7862d63f10)
 
+#### 4.1.2. arraycopy 메소드 호출의 예
+![image](https://github.com/izzy1202/TIL/assets/106478906/6f6fed1f-ae22-4373-a396-096c519a0842)
+
+#### 4.1.3. 두 배열의 내용 비교
+- equals 메소드는 두 배열의 내용을 비교해준다.(object의 equals가 아니라 arrays 클래스의 equals 메소드)
+
+#### 4.1.4. 인스턴스 저장 배열의 비교 예
+![image](https://github.com/izzy1202/TIL/assets/106478906/5f8b23a7-7c25-41b7-9f83-7841fa4d0ad4)
+
+- equals 메소드가 내용 저장하도록 오버라이딩 되지 않았기 때문에 false가 나온다.
+
+#### 4.1.5. Arrays의 equals 메소드가 내용을 비교하는 방식
+![image](https://github.com/izzy1202/TIL/assets/106478906/dbb53802-82a6-406c-935b-c4955c82b8b1)
+
+- o1.equals(o2) 에서 하나라도 false가 나오면 false를 반환한다.
+
+#### 4.1.6. Object 클래스의 equals 메소드 오버라이딩 결과
+![image](https://github.com/izzy1202/TIL/assets/106478906/4567b1a7-a00c-4297-81a9-92a26b5c1847)
+
+#### 4.1.7. 배열의 정렬: Arrays 클래스의 sort 메소드
+> public static void sort(int[] a)
+
+- 매개변수 a로 전달된 배열을 오름차순으로 정렬
+
+#### 4.1.8. 오름차순 정렬이란?
+- 값이 작은 순에서 큰 순으로 세워 나가는 정렬
+- 클래스를 정의할 때 오름차순 순서상 크고 작음에 대한 기준을 정의해야 한다.
+
+#### 4.1.9. compareTo 메소드 정의 기준
+![image](https://github.com/izzy1202/TIL/assets/106478906/139326f4-12b8-46ab-9b33-7fe972d15289)
+
+> interface Comparable
+→ int compareTo(Object o)
+
+- 인자로 전달된 o가 작다면 양의 정수 반환
+- 인자로 전달된 o가 크다면 음의 정수 반환
+- 인자로 전달된 o와 같다면 0을 반환
 
 
