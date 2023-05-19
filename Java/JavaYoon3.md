@@ -40,21 +40,50 @@ class Box<T> {
 }
 ~~~
 
->Box<Apple> aBox = new Box<Apple>();
+> Box<Apple> aBox = new Box<Apple>();
 - T를 Apple로 결정하여 인스턴스 생성
 - 따라서 Apple 또는 Apple을 상속하는 하위 클래스의 인스턴스 저장 가능
 
->타입 매개변수 (Type Parameter) 
+> 타입 매개변수 (Type Parameter) 
 - Box<T>에서 T
->타입 인자 (Type Argument)
+> 타입 인자 (Type Argument)
 - Box<Apple>에서 Apple
->매개변수화 타입 (Parameterized Type) 
+> 매개변수화 타입 (Parameterized Type) 
 - Box<Apple>
   
   
 ### 1.3. 제네릭 이후의 코드: 개선된 결과
 1. object형으로 반환하지 않기 때문에 형변환 하지 않는다.
 2. 자료형을 잘못 입력하는 프로그래머의 실수가 컴파일 단계에서 발견된다.
+
+# 2. 제네릭의 기본 문법
+
+## 2.1. 타입 매개변수의 이름 규칙
+- 일반적인 관례
+  - 한 문자로 이름을 짓는다. 
+  - 대문자로 이름을 짓는다.
+  
+- 보편적인 선택
+E Element
+K Key
+N Number
+T Type
+V Value
+  
+## 2.2. 기본 자료형에 대한 제한 그리고 래퍼 클래스
+![image](https://github.com/izzy1202/TIL/assets/106478906/6cf39b6b-0472-4573-ae65-77725fdd97f9)
+
+- 오토 박싱, 오토 언박싱으로 기본자료형도 넣을 수 있다.
+  
+## 2.3. 다이아몬드 기호
+> Box<Apple> aBox = new Box<Apple>(); 은 Box<Apple> aBox = new Box<>(); 와 같다.
+- 참조변수 선언을 통해서 컴파일러가 사이에 Apple이 와야 함을 유추한다.
+- 뒤의 방식을 많이 사용한다.
+  
+## 2.4. ‘매개변수화 타입’을 ‘타입 인자’로 전달할 수 있다.
+  
+
+  
   
   
   
