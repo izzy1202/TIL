@@ -257,9 +257,28 @@ public static void peekBox(Box<? super Integer> box) {
 - 반복자(iterator)의 next 메소드가 순차적으로 참조하게 해준다.
 
 ### 2.7. Iterator 반복자의 세 가지 메소드
-- E next() :다음 인스턴스의 참조 값을 반환
+![image](https://github.com/izzy1202/TIL/assets/106478906/d4aafbe9-4f09-4fdf-b058-60818d81d927)
+- E next() : 다음 인스턴스의 참조 값을 반환
 - boolean hasNext() next : 메소드 호출 시 참조 값 반환 가능 여부 확인
 - void remove() next : 메소드 호출을 통해 반환했던 인스턴스 삭제
+  - remove는 현재 가리키는 대상을 삭제한다.
+
+### 2.8. 배열보다는 컬렉션 인스턴스가 좋다. : 컬렉션변환
+1. 인스턴스의 저장과 삭제가 편하다.(size 걱정 x)
+2. 반복자를 쓸 수 있다.
+단, 배열처럼 선언과 동시에 초기화가 불가능하다. 그러나 다음 방법을 쓸 수 있다.
+> List<String> list = Arrays.asList("Toy", "Robot", "Box");
+
+→ 인자로 전달된 인스턴스들을 저장한 컬렉션 인스턴스의 생성 및 반환
+→ 이렇게 생성된 리스트 인스턴스는 Immutable 인스턴스이다.
+
+![image](https://github.com/izzy1202/TIL/assets/106478906/fb5aa0b9-5bcd-4493-8068-a4b2384f99f2)
+- collection 인스턴스의 참조값을 인자로 받을 수 있다(collection 인터페이스가 모든 collection 클래스의 최상위 인터페이스니까)
+- 새로운 ArrayList가 생성되는데 인자로 전달된 collection 인스턴스의 값을 그대로 복사한다.
+  - 중복 저장이 가능해서 Box가 두번 들어간다.
+
+
+
 
 
 
