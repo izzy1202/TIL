@@ -14,7 +14,7 @@
 * [윤성우의 열혈 Java - 1강 ~ 13강 강의내용 정리](https://github.com/izzy1202/TIL/blob/main/Java/JavaYoon.md)
 * [윤성우의 열혈 Java - 14강 ~ 20강 강의내용 정리](https://github.com/izzy1202/TIL/blob/main/Java/JavaYoon2.md)
 * [윤성우의 열혈 Java - 21강 ~ 30강 강의내용 정리](https://github.com/izzy1202/TIL/blob/main/Java/JavaYoon3.md)
-* [디지털기초역량 향상을 위한 웹개발 입문 과정 강의내용 정리](https://github.com/izzy1202/TIL/blob/main/Java/MetaCodingJava1.md)
+* [디지털기초역량 향상을 위한 웹개발 입문 과정 - 강의내용 정리](https://github.com/izzy1202/TIL/blob/main/Java/MetaCodingJava1.md)
 
 ### SPRING
 * [스프링부트 게시판 무작정 따라하기](https://github.com/izzy1202/TIL/blob/main/SpringBoot/BoardStudy.md)
