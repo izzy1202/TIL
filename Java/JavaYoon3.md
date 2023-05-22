@@ -56,9 +56,9 @@ class Box<T> {
 1. object형으로 반환하지 않기 때문에 형변환 하지 않는다.
 2. 자료형을 잘못 입력하는 프로그래머의 실수가 컴파일 단계에서 발견된다.
 
-# 2. 제네릭의 기본 문법
+## 2. 제네릭의 기본 문법
 
-## 2.1. 타입 매개변수의 이름 규칙
+### 2.1. 타입 매개변수의 이름 규칙
 - 일반적인 관례
   - 한 문자로 이름을 짓는다. 
   - 대문자로 이름을 짓는다.
@@ -70,21 +70,68 @@ N Number
 T Type
 V Value
   
-## 2.2. 기본 자료형에 대한 제한 그리고 래퍼 클래스
+### 2.2. 기본 자료형에 대한 제한 그리고 래퍼 클래스
 ![image](https://github.com/izzy1202/TIL/assets/106478906/6cf39b6b-0472-4573-ae65-77725fdd97f9)
 
 - 오토 박싱, 오토 언박싱으로 기본자료형도 넣을 수 있다.
   
-## 2.3. 다이아몬드 기호
+### 2.3. 다이아몬드 기호
 > Box<Apple> aBox = new Box<Apple>(); 은 Box<Apple> aBox = new Box<>(); 와 같다.
 - 참조변수 선언을 통해서 컴파일러가 사이에 Apple이 와야 함을 유추한다.
 - 뒤의 방식을 많이 사용한다.
   
-## 2.4. ‘매개변수화 타입’을 ‘타입 인자’로 전달할 수 있다.
+### 2.4. ‘매개변수화 타입’을 ‘타입 인자’로 전달할 수 있다.
+~~~java
+  Box<Box<String>> wBox = new Box<>();
+~~~
   
+### 2.5. 제네릭 클래스의 타입 인자 제한하기
+> class Box<T extends Number> {...}
+- 인스턴스 생성 시 타입 인자로 Number 또는 이를 상속하는 클래스만 올 수 있음
+- Number 클래스로 타입 인자를 제한했더니 Number클래스의 메소드를 호출할 수 있는 효과가 생긴다.(이 효과가 타입 인자를 제한하는 실질적인 이유인 경우가 많다.)
+  
+### 2.6. 제네릭 클래스의 타입 인자를 인터페이스로 제한하기  
+~~~java
+interface Eatable { public String eat(); }
+  
+class Apple implements Eatable {
+    public String eat() {
+    return "It tastes so good!";
+    }
+  . . . .
+}
+  
+class Box<T extends Eatable> {
+  T ob;
+  
+  public void set(T o) { ob = o; }
+    public T get() {
+      System.out.println(ob.eat()); // Eatable로 제한하였기에 eat 호출 가능
+      return ob;
+  }
+}
+~~~
+- 제네릭 클래스의 타입 인자는 인터페이스로도 제한 가능하다.  
+  
+### 2.7. 하나의 클래스와 하나의 인터페이스에 대해 동시제한
+~~~java
+  class Box<T extends Number & Eatable> {...}
+   //Number는 클래스 이름 Eatable은 인터페이스 이름
+~~~ 
 
+  ### 2.8. 제네릭 메소드의 정의
+  - 클래스 전부가 아닌 메소드 하나에 대해 제네릭으로 정의 가능하다.
+  ![image](https://github.com/izzy1202/TIL/assets/106478906/26590549-f6cb-4f94-962a-4b2c636e61d2)
+![image](https://github.com/izzy1202/TIL/assets/106478906/218f6a79-c196-4267-a47a-0da2428d9db8)
+-> 전달되는 인자에 따라서 판단 가능하기 때문에 타입 인자 생략 가능하다.
+
+  > 제네릭 클래스와 제네릭 메소드의 차이점
+  - 제네릭 클래스는 인스턴스 생성시에 타입이 결정되고 제네릭 메소드는 메소드 호출시에 결정된다.
   
+  # Chapter 22
   
+  ## 1. 제네릭의 심화 문법
+
   
   
   
